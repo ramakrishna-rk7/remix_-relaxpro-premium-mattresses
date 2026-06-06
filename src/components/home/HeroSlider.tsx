@@ -57,7 +57,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, x: -40, filter: 'blur(4px)' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pb-20 md:pb-28"
             >
               {/* Left Column — Text Content */}
               <div className="lg:col-span-7 space-y-6 md:space-y-8 text-center lg:text-left">
@@ -181,14 +181,11 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, x: -40, filter: 'blur(4px)' }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex flex-col items-center justify-center relative overflow-hidden py-8"
+              className="w-full flex flex-col items-center justify-center relative overflow-hidden pt-8 pb-20 md:pb-28"
             >
               <BlurFade delay={0.1}>
                 <div className="text-center max-w-2xl mx-auto space-y-4 relative z-10 w-full">
-                  <span className="inline-flex items-center gap-2 bg-accent/15 border border-accent/30 text-accent px-4 py-2 rounded-full text-[11px] font-accent font-bold tracking-wider uppercase">
-                    <Home className="w-3.5 h-3.5" /> VIP Home Service
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-heading font-bold text-white leading-tight mt-4">
+                  <h2 className="text-3xl md:text-5xl font-heading font-bold text-white leading-tight mt-2">
                     Door to Door Service for{' '}
                     <br className="hidden md:block" />
                     <span className="italic text-accent font-heading">Our Valuable Customers.</span>

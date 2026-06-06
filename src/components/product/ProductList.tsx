@@ -337,21 +337,22 @@ export default function ProductList({
                       </div>
 
                       {/* Price indicator */}
-                      <div className="flex justify-between items-end bg-accent/5 p-4 rounded-2xl border border-accent/10">
-                        <div>
-                          <span className="text-[10px] font-accent text-accent-dark tracking-widest font-bold block uppercase mb-1">DIRECT FROM FACTORY</span>
-                          <span className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
-                            ₹{price.toLocaleString('en-IN')}
-                            <span className="text-sm font-body text-neutral-dark/40 line-through font-normal">
+                      <div className="flex justify-between items-end p-4 rounded-xl border border-brand-200/50 bg-white shadow-sm mt-2">
+                        <div className="flex flex-col">
+                          <span className="text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-1">Direct-to-Consumer</span>
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-bold font-heading text-primary">
+                              ₹{price.toLocaleString('en-IN')}
+                            </span>
+                            <span className="text-sm font-body text-neutral-dark/40 line-through">
                               ₹{Math.round(price * 1.4).toLocaleString('en-IN')}
                             </span>
-                          </span>
+                          </div>
                         </div>
-                        
-                        <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[120px] leading-tight">
+                        <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[110px] leading-tight">
                           {p.pricingModel === 'with_without_accessories' ? 
-                            '*Excludes pillow set. Add accessories at checkout.' : 
-                            '*Reflects base 300 GSM model cover wrap.'}
+                            '*Excludes pillow set.' : 
+                            '*Base 300 GSM model.'}
                         </div>
                       </div>
                     </div>
