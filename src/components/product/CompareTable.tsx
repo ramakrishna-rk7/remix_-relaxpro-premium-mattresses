@@ -7,9 +7,10 @@ import { PRODUCTS } from '../../data/products';
 interface CompareTableProps {
   onAddToCartDirect: (product: Product, size: MattressSize, includeAcc: boolean) => void;
   onNavigateToPdp: (slug: string) => void;
+  onNavigate: (page: string) => void;
 }
 
-export default function CompareTable({ onAddToCartDirect, onNavigateToPdp }: CompareTableProps) {
+export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNavigate }: CompareTableProps) {
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>(['nirvana', 'arogya', 'sthira']);
   const [activeSize, setActiveSize] = useState<MattressSize>('king');
 
@@ -362,7 +363,10 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp }: Com
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                   <div className="space-y-2">
                     <button
-                      onClick={() => onAddToCartDirect(p, activeSize, false)}
+                      onClick={() => {
+                        onAddToCartDirect(p, activeSize, false);
+                        onNavigate('cart');
+                      }}
                       className="w-full bg-brand-950 hover:bg-brand-800 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 cursor-pointer transition-all"
                     >
                       <ShoppingCart className="w-3.5 h-3.5" />

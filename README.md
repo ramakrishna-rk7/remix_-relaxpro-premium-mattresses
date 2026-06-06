@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# RelaxPro Premium Mattresses
 
-# Run and deploy your AI Studio app
+Welcome to the RelaxPro Premium Mattresses frontend application. This project was developed by a professional web developer to showcase high-quality, 100% natural organic latex mattresses.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/a1eb9c64-3ddd-41dd-ba08-5ac736ae50b1
+## Technologies Used
+- React (Vite)
+- Tailwind CSS v4
+- Framer Motion
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
+
+## Build for Production
+   `npm run build`

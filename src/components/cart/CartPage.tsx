@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem } from '../../types';
 import { submitLead } from '../../utils/googleSheets';
 
@@ -111,20 +111,21 @@ export default function CartPage({
         initial={{ opacity: 0, y: 15 }} 
         animate={{ opacity: 1, y: 0 }} 
         exit={{ opacity: 0, y: -15 }}
-        className="max-w-7xl mx-auto px-4 md:px-8 py-20 text-center"
+        className="max-w-7xl mx-auto px-4 md:px-8 py-24 text-center min-h-[60vh] flex flex-col justify-center items-center"
       >
-        <div className="w-16 h-16 bg-brand-100 text-brand-950 rounded-full flex items-center justify-center mx-auto mb-6">
-          <ShoppingBag className="w-8 h-8 text-amber-800" />
+        <div className="w-20 h-20 bg-neutral-light text-primary rounded-full flex items-center justify-center mx-auto mb-8 border border-brand-200/50 shadow-sm relative">
+          <div className="absolute inset-0 bg-accent/5 rounded-full animate-pulse"></div>
+          <ShoppingBag className="w-8 h-8 text-accent relative z-10" />
         </div>
-        <h2 className="font-display font-medium text-3xl text-brand-950">Your Cart is Currently Empty</h2>
-        <p className="text-gray-500 mt-2 max-w-sm mx-auto leading-relaxed text-sm font-sans">
-          Before initiating your custom order, customize a mattress layer by layer or look through our pre-built models.
+        <h2 className="font-heading font-bold text-4xl text-primary mb-4">Your Cart is Empty</h2>
+        <p className="text-neutral-dark/60 mt-2 max-w-md mx-auto leading-relaxed text-sm font-body">
+          Before initiating your custom order, explore our collection of premium natural latex mattresses tailored for perfect sleep.
         </p>
         <button
           onClick={() => onNavigate('catalog')}
-          className="mt-6 bg-brand-950 hover:bg-zinc-850 text-white font-display text-xs font-bold uppercase tracking-wider px-6 py-4 rounded-xl cursor-pointer shadow-md transition-all"
+          className="mt-8 btn-primary bg-primary hover:bg-neutral-dark text-white font-accent text-[13px] font-bold uppercase tracking-widest px-8 py-4 rounded-xl cursor-pointer shadow-lg transition-all"
         >
-          View Mattress Collections
+          Explore Collections
         </button>
       </motion.div>
     );
@@ -136,31 +137,31 @@ export default function CartPage({
       animate={{ opacity: 1, y: 0 }} 
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.3 }}
-      className="max-w-6xl mx-auto px-4 md:px-6 py-12"
+      className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16"
     >
       {/* Dynamic Header */}
       <div className="max-w-3xl mb-12">
-        <h1 className="text-3xl md:text-4xl font-display font-medium tracking-tight text-brand-950">
-          Almost there.
+        <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight text-primary">
+          Complete Your Order
         </h1>
-        <p className="text-amber-800 mt-2 text-sm font-sans font-medium flex items-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-amber-600 animate-pulse" /> We'll confirm your order on WhatsApp within 1 hour.
+        <p className="text-accent mt-3 text-sm font-accent font-medium flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-accent animate-pulse" /> We'll confirm your order on WhatsApp within 1 hour.
         </p>
       </div>
 
       <form onSubmit={handleSubmitBooking} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
         {/* Left Column: Your details */}
         <div className="lg:col-span-7 space-y-8">
-          <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-200/80 shadow-xs space-y-6">
-            <h3 className="font-display font-semibold text-lg text-brand-950 tracking-tight pb-3 border-b border-zinc-100">
-              Your details
+          <div className="bg-white p-6 md:p-10 rounded-[2rem] border border-brand-200/40 shadow-sm space-y-8">
+            <h3 className="font-heading font-bold text-2xl text-primary tracking-tight pb-4 border-b border-brand-200/30">
+              Delivery Details
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="md:col-span-2">
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
-                  Full name <span className="text-rose-500">*</span>
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
+                  Full name <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
@@ -168,15 +169,15 @@ export default function CartPage({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Srinivas Rao"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
-                {errors.name && <span className="text-[10px] text-rose-500 font-mono block mt-1">{errors.name}</span>}
+                {errors.name && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.name}</span>}
               </div>
 
               {/* Phone */}
               <div>
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
-                  Phone <span className="text-rose-500">*</span>
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
+                  Phone <span className="text-accent">*</span>
                 </label>
                 <input
                   type="tel"
@@ -185,14 +186,14 @@ export default function CartPage({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="e.g. 9876543210"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-mono focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
-                {errors.phone && <span className="text-[10px] text-rose-500 font-mono block mt-1">{errors.phone}</span>}
+                {errors.phone && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.phone}</span>}
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
                   Email
                 </label>
                 <input
@@ -200,14 +201,14 @@ export default function CartPage({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. srinivas@example.com"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
               </div>
 
               {/* Detailed Address */}
               <div className="md:col-span-2">
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
-                  Delivery address
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
+                  Delivery address <span className="text-accent">*</span>
                 </label>
                 <textarea
                   required
@@ -215,20 +216,20 @@ export default function CartPage({
                   onChange={(e) => setAddress(e.target.value)}
                   rows={2}
                   placeholder="House / flat, street, landmark"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none resize-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
                 />
-                {errors.address && <span className="text-[10px] text-rose-500 font-mono block mt-1">{errors.address}</span>}
+                {errors.address && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.address}</span>}
               </div>
 
               {/* City */}
               <div>
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
-                  City <span className="text-rose-500">*</span>
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
+                  City <span className="text-accent">*</span>
                 </label>
                 <select
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden cursor-pointer bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent cursor-pointer bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 >
                   <option value="Hyderabad">Hyderabad</option>
                   <option value="Rajahmundry">Rajahmundry</option>
@@ -240,8 +241,8 @@ export default function CartPage({
 
               {/* Pincode (Zip) */}
               <div>
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
-                  Pincode <span className="text-rose-500">*</span>
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
+                  Pincode <span className="text-accent">*</span>
                 </label>
                 <input
                   type="text"
@@ -250,14 +251,14 @@ export default function CartPage({
                   value={zip}
                   onChange={(e) => setZip(e.target.value)}
                   placeholder="6-digit pincode"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-mono focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-mono focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
-                {errors.zip && <span className="text-[10px] text-rose-500 font-mono block mt-1">{errors.zip}</span>}
+                {errors.zip && <span className="text-[10px] text-red-500 font-accent font-bold tracking-wide uppercase block mt-2">{errors.zip}</span>}
               </div>
 
               {/* Preferred contact time */}
               <div className="md:col-span-2">
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
                   Preferred contact time
                 </label>
                 <input
@@ -265,13 +266,13 @@ export default function CartPage({
                   value={contactTime}
                   onChange={(e) => setContactTime(e.target.value)}
                   placeholder="e.g. Weekdays after 6pm"
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none"
                 />
               </div>
 
               {/* Delivery notes */}
               <div className="md:col-span-2">
-                <label className="block text-xs font-medium text-zinc-700 mb-1.5">
+                <label className="block text-xs font-accent font-bold text-primary uppercase tracking-wider mb-2">
                   Delivery notes (optional)
                 </label>
                 <textarea
@@ -279,7 +280,7 @@ export default function CartPage({
                   onChange={(e) => setNotes(e.target.value)}
                   rows={2}
                   placeholder="Building, floor, lift access, time preference, etc."
-                  className="w-full px-4 py-3 rounded-xl border border-zinc-200 text-xs font-sans focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 bg-zinc-50/50 focus:bg-white transition-all outline-none resize-none"
+                  className="w-full px-5 py-3.5 rounded-xl border border-brand-200/50 text-sm font-body focus:outline-hidden focus:ring-2 focus:ring-accent/20 focus:border-accent bg-neutral-light/50 focus:bg-white transition-all outline-none resize-none"
                 />
               </div>
             </div>
@@ -288,63 +289,63 @@ export default function CartPage({
 
         {/* Right Column: Your order */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-200/80 shadow-xs space-y-6">
-            <div className="flex md:items-center justify-between pb-3 border-b border-zinc-100">
-              <h3 className="font-display font-semibold text-lg text-brand-950 tracking-tight">
-                Your order
+          <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-brand-200/40 shadow-sm space-y-8 sticky top-32">
+            <div className="flex items-center justify-between pb-4 border-b border-brand-200/30">
+              <h3 className="font-heading font-bold text-2xl text-primary tracking-tight">
+                Order Summary
               </h3>
               <button
                 type="button"
                 onClick={onClearCart}
-                className="text-xs text-zinc-400 hover:text-rose-600 transition-colors underline cursor-pointer font-sans"
+                className="text-xs text-neutral-dark/40 hover:text-red-500 font-accent font-bold uppercase tracking-wider transition-colors underline cursor-pointer"
               >
                 Clear items
               </button>
             </div>
 
             {/* Cart Items List */}
-            <div className="divide-y divide-zinc-100">
+            <div className="divide-y divide-brand-200/30">
               {cart.map((item) => (
-                <div key={item.id} className="py-4 first:pt-0 last:pb-0">
+                <div key={item.id} className="py-5 first:pt-0 last:pb-0">
                   <div className="flex justify-between items-start gap-4">
-                    <div className="space-y-1">
-                      <h4 className="font-sans font-bold text-sm text-brand-950 leading-tight">
+                    <div className="space-y-1.5 flex-1">
+                      <h4 className="font-heading font-bold text-base text-primary leading-tight">
                         {item.name}
                       </h4>
-                      <p className="font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
-                        {item.size} <span className="mx-1">•</span> Qty: {item.quantity}
+                      <p className="font-accent font-bold text-[10px] tracking-wider text-neutral-dark/50 uppercase">
+                        {item.size} <span className="mx-1.5 text-brand-200">|</span> QTY: {item.quantity}
                       </p>
                       
                       {item.includeAccessories && (
-                        <p className="text-[9px] text-emerald-700 font-medium font-mono bg-emerald-50 px-1.5 py-0.5 rounded inline-block">
-                          🎁 Access. bundle included
+                        <p className="text-[10px] text-success font-bold font-accent uppercase tracking-wider bg-success/10 border border-success/20 px-2 py-1 rounded inline-block mt-1">
+                          + Accessory Pack
                         </p>
                       )}
                     </div>
                     
-                    <div className="text-right">
-                      <span className="font-mono text-xs font-bold text-brand-950 block">
+                    <div className="text-right flex flex-col items-end">
+                      <span className="font-mono text-sm font-bold text-primary block">
                         ₹{(item.price * item.quantity).toLocaleString('en-IN')}
                       </span>
                       
                       {/* Responsive adjustment controls inline */}
-                      <div className="flex items-center gap-1.5 bg-zinc-50 border border-zinc-200/60 rounded-md p-0.5 mt-2">
+                      <div className="flex items-center gap-2 bg-neutral-light border border-brand-200/50 rounded-lg p-1 mt-3">
                         <button
                           type="button"
                           onClick={() => onUpdateQty(item.id, item.quantity - 1)}
-                          className="w-4 h-4 rounded text-zinc-500 hover:bg-white flex items-center justify-center cursor-pointer transition-colors"
+                          className="w-5 h-5 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-all"
                         >
-                          <Minus className="w-2 h-2" />
+                          <Minus className="w-3 h-3" />
                         </button>
-                        <span className="font-mono text-[9px] font-semibold text-zinc-700 px-0.5">
+                        <span className="font-mono text-[11px] font-bold text-primary px-1">
                           {item.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => onUpdateQty(item.id, item.quantity + 1)}
-                          className="w-4 h-4 rounded text-zinc-500 hover:bg-white flex items-center justify-center cursor-pointer transition-colors"
+                          className="w-5 h-5 rounded flex items-center justify-center text-primary hover:bg-white hover:shadow-sm cursor-pointer transition-all"
                         >
-                          <Plus className="w-2 h-2" />
+                          <Plus className="w-3 h-3" />
                         </button>
                       </div>
                     </div>
@@ -354,45 +355,51 @@ export default function CartPage({
             </div>
 
             {/* Subtotal & Free Delivery */}
-            <div className="pt-4 border-t border-zinc-100 space-y-2.5 text-xs font-sans text-zinc-650">
-              <div className="flex justify-between">
+            <div className="pt-6 border-t border-brand-200/30 space-y-3.5 text-sm font-body text-neutral-dark/70">
+              <div className="flex justify-between items-center">
                 <span>Subtotal</span>
-                <span className="font-mono font-medium text-brand-950">₹{subtotal.toLocaleString('en-IN')}</span>
+                <span className="font-mono font-bold text-primary">₹{subtotal.toLocaleString('en-IN')}</span>
               </div>
-              <div className="flex justify-between items-center text-zinc-500">
-                <span>Delivery</span>
-                <span className="font-sans font-bold text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-wider">
+              <div className="flex justify-between items-center">
+                <span>Delivery (Kerala to your door)</span>
+                <span className="font-accent font-bold text-[11px] text-success bg-success/10 border border-success/20 px-2.5 py-1 rounded-full uppercase tracking-widest">
                   Free
                 </span>
               </div>
             </div>
 
             {/* Total Balance */}
-            <div className="pt-4 border-t border-zinc-100 flex justify-between items-baseline">
-              <span className="text-zinc-900 font-display font-medium text-sm">Total</span>
-              <span className="text-xl font-bold font-display text-brand-950 font-mono">
+            <div className="pt-6 border-t border-brand-200/30 flex justify-between items-end">
+              <span className="text-primary font-heading font-bold text-lg">Total</span>
+              <span className="text-3xl font-bold font-heading text-primary">
                 ₹{grandTotal.toLocaleString('en-IN')}
               </span>
             </div>
 
             {/* Action buttons embedded in the order card */}
-            <div className="pt-2">
+            <div className="pt-4">
               <button
                 id="btn-place-order"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-brand-950 hover:bg-zinc-800 disabled:bg-zinc-300 active:bg-black text-white font-sans font-bold text-xs tracking-widest uppercase py-4 rounded-full shadow-lg cursor-pointer flex items-center justify-center gap-1.5 transition-all"
+                className="w-full btn-primary bg-primary hover:bg-neutral-dark disabled:bg-neutral-light disabled:text-neutral-dark/40 disabled:border-brand-200 text-white font-accent font-bold text-sm tracking-widest uppercase py-4.5 rounded-2xl shadow-lg cursor-pointer flex items-center justify-center gap-2 transition-all relative overflow-hidden group"
               >
                 {isSubmitting ? (
-                  <span>Processing...</span>
+                  <span>Processing Request...</span>
                 ) : (
-                  <>Place order · ₹{grandTotal.toLocaleString('en-IN')}</>
+                  <>
+                    <div className="absolute inset-0 bg-white/10 w-0 group-hover:w-full transition-all duration-300 ease-out"></div>
+                    <span className="relative z-10 flex items-center gap-2">Place Order on WhatsApp <ArrowRight className="w-4 h-4" /></span>
+                  </>
                 )}
               </button>
               
-              <p className="text-[10px] text-stone-500 text-center mt-3.5 leading-normal max-w-xs mx-auto">
-                No payment now. We'll WhatsApp you to confirm and arrange payment.
-              </p>
+              <div className="flex items-start gap-3 mt-5 bg-neutral-light p-4 rounded-xl border border-brand-200/50">
+                <CheckCircle2 className="w-5 h-5 text-success shrink-0" />
+                <p className="text-[11px] text-neutral-dark/70 leading-relaxed font-body">
+                  <strong>No upfront payment required.</strong> After placing the order, Suresh will contact you to verify dimensions and arrange secure payment options.
+                </p>
+              </div>
             </div>
           </div>
         </div>

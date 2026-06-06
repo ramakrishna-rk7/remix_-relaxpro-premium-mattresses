@@ -1,165 +1,244 @@
-import React from 'react';
-import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Sparkles, Facebook, Instagram, Youtube } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, Check } from 'lucide-react';
 import { PRODUCTS } from '../../data/products';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
-interface FooterProps {
-  onNavigate: (page: string) => void;
-  onNavigateToPdp: (slug: string) => void;
-}
+export default function Footer() {
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
-export default function Footer({ onNavigate, onNavigateToPdp }: FooterProps) {
-  // Group products for pretty column listing
   const luxuryModels = PRODUCTS.filter(p => p.tier === 'luxury');
   const premiumModels = PRODUCTS.filter(p => p.tier === 'premium');
   const comfortModels = PRODUCTS.filter(p => p.tier === 'comfort');
 
+  const toggleAccordion = (section: string) => {
+    setOpenAccordion(openAccordion === section ? null : section);
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      setEmailError(true);
+      setTimeout(() => setEmailError(false), 600);
+      return;
+    }
+    setSubscribed(true);
+    setEmail('');
+  };
+
+  const quickLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/catalog', label: 'Shop All' },
+    { path: '/builder', label: 'Customize' },
+    { path: '/science', label: 'Sleep Science' },
+    { path: '/about', label: 'About Us' },
+  ];
+
+  const customerCare = [
+    { path: '/contact', label: 'Contact Us' },
+    { path: '/locations', label: 'Store Locations' },
+    { path: '/science', label: 'Sleep Education' },
+  ];
+
   return (
-    <footer className="bg-brand-950 text-stone-300 pt-16 pb-8 border-t-2 border-brand-800">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 border-b border-white/10 pb-12 mb-12">
-        {/* Brand identity col */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="flex flex-col items-start gap-1">
-            <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
-            <span className="text-[8px] font-mono tracking-[0.22em] text-brand-500 block uppercase font-black mt-2">
-              KERALA ORGANIC LATEX LABS
-            </span>
-          </div>
-          <p className="text-stone-400 text-xs leading-relaxed max-w-sm">
-            Leading Latex foam mattress manufacturer in Andhra Pradesh and Telangana. By harvesting 100% natural biodegradable Dunlop rubber sap in Kerala, Suresh custom formats medical-grade latex mattresses without high distributor markups.
-          </p>
+    <footer className="bg-primary text-white/70 border-t-2 border-accent/30">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-14 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-10">
 
-          {/* Social guarantees flags */}
-          <div className="space-y-2 text-xs">
-            <div className="flex items-center gap-2.5 text-stone-200">
-              <Shield className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>10-Year Direct Factory Replacement Warranty</span>
+          {/* Col 1: Brand */}
+          <div className="lg:col-span-4 space-y-5">
+            <div className="flex flex-col items-start gap-1">
+              <RelaxProLogo variant="footer" inverse={true} className="!items-start" />
+              <span className="text-[8px] font-accent tracking-[0.22em] text-accent block uppercase font-bold mt-2">
+                Kerala Organic Latex Labs
+              </span>
             </div>
-            <div className="flex items-center gap-2.5 text-stone-200">
-              <RefreshCcw className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>No Showroom Commissions • Direct From Kerala Unit</span>
-            </div>
-            <div className="flex items-center gap-2.5 text-stone-200">
-              <Truck className="w-4 h-4 text-brand-500 shrink-0" />
-              <span>Free Doorstep Shipping To Major Metropolitan Hubs</span>
-            </div>
-          </div>
-        </div>
+            <p className="text-white/40 text-xs leading-relaxed max-w-sm font-body">
+              Leading natural latex mattress manufacturer in Andhra Pradesh and Telangana. Handcrafted from 100% GOLS certified Dunlop rubber — factory direct with zero markups.
+            </p>
 
-        {/* Directory lists */}
-        <div className="lg:col-span-5 grid grid-cols-3 gap-4 md:gap-6">
-          <div>
-            <h4 className="font-display font-bold text-white text-xs uppercase tracking-widest mb-4">Luxury Latex</h4>
-            <ul className="space-y-2 text-xs">
-              {luxuryModels.map(p => (
-                <li key={p.slug}>
-                  <button
-                    onClick={() => onNavigateToPdp(p.slug)}
-                    className="hover:text-white transition-colors underline cursor-pointer text-left block"
-                  >
-                    {p.name}
-                  </button>
-                </li>
+            {/* Trust Badges */}
+            <div className="space-y-2.5 text-xs">
+              {[
+                { icon: <Shield className="w-4 h-4" />, text: '10-Year Factory Replacement Warranty' },
+                { icon: <RefreshCcw className="w-4 h-4" />, text: 'Direct From Kerala • No Middleman' },
+                { icon: <Truck className="w-4 h-4" />, text: 'Free Doorstep Shipping To Major Cities' },
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-2.5 text-white/60">
+                  <span className="text-accent shrink-0">{item.icon}</span>
+                  <span>{item.text}</span>
+                </div>
               ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-display font-bold text-white text-xs uppercase tracking-widest mb-4">Premium Ortho</h4>
-            <ul className="space-y-2 text-xs">
-              {premiumModels.map(p => (
-                <li key={p.slug}>
-                  <button
-                    onClick={() => onNavigateToPdp(p.slug)}
-                    className="hover:text-white transition-colors underline cursor-pointer text-left block"
-                  >
-                    {p.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-display font-bold text-white text-xs uppercase tracking-widest mb-4">Comfort Foam</h4>
-            <ul className="space-y-2 text-xs">
-              {comfortModels.map(p => (
-                <li key={p.slug}>
-                  <button
-                    onClick={() => onNavigateToPdp(p.slug)}
-                    className="hover:text-white transition-colors underline cursor-pointer text-left block"
-                  >
-                    {p.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+            </div>
 
-        {/* Contact info / Factory outlets */}
-        <div className="lg:col-span-3 space-y-4">
-          <h4 className="font-display font-bold text-white text-xs uppercase tracking-widest">Connect Direct</h4>
-          <div className="space-y-3.5 text-xs">
-            <div className="flex gap-2.5 items-start">
-              <Phone className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-mono text-[10px] text-stone-500 block uppercase">CUSTOMER HELPLINE</span>
-                <a href="tel:+918977024494" className="text-white hover:underline block font-semibold">
-                  +91 89770 24494
-                </a>
-                <a href="tel:+917207424494" className="text-white hover:underline block">
-                  +91 72074 24494
-                </a>
+            {/* Social Icons */}
+            <div className="flex gap-4 pt-2">
+              <a href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Facebook">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="https://www.instagram.com/relaxpro__mattresses/?hl=en" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="Instagram">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="https://www.youtube.com/@sureshmattressmanufacturer3784" target="_blank" rel="noopener noreferrer" className="social-bounce text-white/30 hover:text-white" title="YouTube">
+                <Youtube className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Col 2 & 3: Quick Links + Customer Care (Desktop only) */}
+          <div className="hidden md:grid lg:col-span-4 grid-cols-2 gap-6">
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
+                Quick Links
+              </h4>
+              <ul className="space-y-2.5 text-xs">
+                {quickLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Customer Care */}
+            <div>
+              <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest mb-4">
+                Customer Care
+              </h4>
+              <ul className="space-y-2.5 text-xs">
+                {customerCare.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="hover:text-white hover:translate-x-1 transition-all inline-block cursor-pointer"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Contact */}
+              <div className="mt-6 space-y-3 text-xs">
+                <div className="flex gap-2 items-start">
+                  <Phone className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                  <div>
+                    <a href="tel:+918977024494" className="hover:text-white block font-semibold">+91 89770 24494</a>
+                    <a href="tel:+917207424494" className="hover:text-white block">+91 72074 24494</a>
+                  </div>
+                </div>
+                <div className="flex gap-2 items-start">
+                  <Mail className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                  <a href="mailto:relaxpro2022@gmail.com" className="hover:text-white">relaxpro2022@gmail.com</a>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="flex gap-2.5 items-start">
-              <Mail className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-mono text-[10px] text-stone-500 block uppercase">SUPPORT MAIL</span>
-                <a href="mailto:relaxpro2022@gmail.com" className="text-white hover:underline block">
-                  relaxpro2022@gmail.com
-                </a>
+          {/* Mobile Accordion (shown on mobile only) */}
+          <div className="md:hidden space-y-0 border-t border-white/10 pt-4">
+            {[
+              { key: 'links', title: 'Quick Links', items: quickLinks },
+              { key: 'care', title: 'Customer Care', items: customerCare },
+            ].map(section => (
+              <div key={section.key} className="border-b border-white/10">
+                <button
+                  onClick={() => toggleAccordion(section.key)}
+                  className="w-full flex items-center justify-between py-4 text-white text-xs font-heading font-bold uppercase tracking-widest cursor-pointer"
+                >
+                  {section.title}
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                    openAccordion === section.key ? 'rotate-180' : ''
+                  }`} />
+                </button>
+                <div className={`footer-accordion-content ${openAccordion === section.key ? 'open' : ''}`}>
+                  <ul className="space-y-2.5 text-xs pb-4">
+                    {section.items.map((link) => (
+                      <li key={link.path}>
+                        <Link to={link.path} className="hover:text-white transition-colors cursor-pointer block py-1">
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="flex gap-2.5 items-start">
-              <MapPin className="w-4 h-4 text-brand-500 shrink-0 mt-0.5" />
-              <div>
-                <span className="font-mono text-[10px] text-stone-500 block uppercase">HYDERABAD FACTORY UNIT</span>
-                <p className="text-stone-400">Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana</p>
+          {/* Col 4: Newsletter */}
+          <div className="lg:col-span-4 space-y-4">
+            <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest">
+              Stay in the Loop
+            </h4>
+            <p className="text-white/40 text-xs font-body leading-relaxed">
+              Sleep tips & exclusive deals, delivered monthly. No spam, ever.
+            </p>
+
+            {subscribed ? (
+              <div className="newsletter-success flex items-center gap-2 bg-success/20 text-success px-4 py-3 rounded-xl text-xs font-semibold">
+                <Check className="w-4 h-4" />
+                You're subscribed! Welcome aboard.
               </div>
-            </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex gap-0">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className={`flex-1 bg-white/10 border border-white/15 text-white placeholder:text-white/30 rounded-l-xl px-4 py-3 text-xs font-body focus:outline-none focus:border-accent transition-colors ${
+                    emailError ? 'animate-[shake_0.5s_ease]' : ''
+                  }`}
+                  style={emailError ? { animation: 'shake 0.5s ease' } : {}}
+                />
+                <button
+                  type="submit"
+                  className="btn-primary bg-accent hover:bg-accent-dark text-primary px-5 py-3 rounded-r-xl text-xs font-bold font-accent uppercase tracking-wider cursor-pointer whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
 
-            <div className="pt-2">
-              <span className="font-mono text-[10px] text-stone-500 block uppercase mb-2">SOCIAL CONNECT</span>
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/p/Relaxpro-Mattresses-100069671211998/" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-white transition-colors" title="Facebook">
-                  <Facebook className="w-4 h-4" />
-                </a>
-                <a href="https://www.instagram.com/relaxpro__mattresses/?hl=en" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-white transition-colors" title="Instagram">
-                  <Instagram className="w-4 h-4" />
-                </a>
-                <a href="https://www.youtube.com/@sureshmattressmanufacturer3784" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-white transition-colors" title="YouTube">
-                  <Youtube className="w-5 h-5" />
-                </a>
+            {/* Factory Address */}
+            <div className="flex gap-2 items-start text-xs mt-4 pt-4 border-t border-white/10">
+              <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+              <div>
+                <span className="font-accent text-[10px] text-white/30 block uppercase tracking-wider font-bold">Factory Headquarters</span>
+                <p className="text-white/50 mt-0.5">Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-        <div>
-          <p>© {new Date().getFullYear()} RelaxPro Premium Mattresses Pvt Ltd. All rights reserved.</p>
-          <p className="mt-1 text-[10px]">All Kerala harvested latex is GOLS Certified, and our fabrics hold Oeko-Tex Standard-100 certification.</p>
-        </div>
-        <div className="flex gap-6">
-          <button onClick={() => onNavigate('science')} className="hover:text-stone-300 transition-colors uppercase tracking-widest font-mono text-[10px] cursor-pointer">
-            Sleep Science Education
-          </button>
-          <button onClick={() => onNavigate('locations')} className="hover:text-stone-300 transition-colors uppercase tracking-widest font-mono text-[10px] cursor-pointer">
-            Showrooms Map
-          </button>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30">
+          <div className="text-center md:text-left">
+            <p>© {new Date().getFullYear()} RelaxPro Premium Mattresses Pvt Ltd. All rights reserved.</p>
+            <p className="mt-1 text-[10px]">Kerala harvested latex is GOLS Certified • Fabrics hold Oeko-Tex Standard-100</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <Link to="/science" className="hover:text-white/60 transition-colors uppercase tracking-widest font-accent text-[10px] cursor-pointer">
+              Sleep Science
+            </Link>
+            <Link to="/locations" className="hover:text-white/60 transition-colors uppercase tracking-widest font-accent text-[10px] cursor-pointer">
+              Showrooms
+            </Link>
+            <span className="text-white/20">Made with ❤️ for better sleep</span>
+          </div>
         </div>
       </div>
     </footer>

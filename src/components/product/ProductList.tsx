@@ -107,53 +107,54 @@ export default function ProductList({
   }, [searchTerm, selectedTier, selectedComfort, onlyLatex, sortBy]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 py-10">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
       {/* Title block */}
-      <div className="mb-12 border-b border-zinc-200 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-        <div>
-          <span className="text-[11px] uppercase tracking-widest font-mono font-bold text-brand-600 bg-brand-100 px-3 py-1 rounded-full">
-            REAL NATURAL LATEX & ORTHO HEALTH MODULES
+      <div className="mb-12 border-b border-brand-200/40 pb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 fade-up">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 text-[11px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-4 py-1.5 rounded-full font-bold">
+            Real Natural Latex & Ortho Health Modules
           </span>
-          <h1 className="text-3xl md:text-5xl font-display font-medium tracking-tight mt-3 text-brand-950">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight mt-6 text-primary leading-[1.1]">
             Explore Mattress Collections
           </h1>
-          <p className="text-gray-500 text-sm mt-2 max-w-2xl font-sans">
+          <p className="text-neutral-dark/70 text-base md:text-lg mt-6 font-body leading-relaxed max-w-xl">
             Direct-from-factory pricing with absolute transparency. Tap any product image for comprehensive layered specifications and custom warranties.
           </p>
         </div>
         
         {/* Dynamic counter */}
-        <div className="font-mono text-xs text-zinc-500 bg-zinc-100 px-4 py-2 rounded-xl border border-zinc-200 shrink-0 select-none">
-          Showing <span className="font-bold text-brand-950">{filteredProducts.length}</span> of 13 Models Available
+        <div className="font-mono text-[11px] uppercase tracking-widest text-neutral-dark/50 bg-white/50 backdrop-blur-sm px-5 py-3 rounded-full border border-brand-200/40 shrink-0 select-none shadow-sm flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-success animate-pulse"></div>
+          Showing <span className="font-bold text-primary">{filteredProducts.length}</span> of 13 Models
         </div>
       </div>
 
       {/* FILTER CONTROLLER DASHBOARD */}
-      <div className="bg-white p-5 md:p-6 rounded-2xl border border-zinc-200/80 shadow-md mb-8 grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+      <div className="bg-white p-6 md:p-8 rounded-3xl border border-brand-200/40 shadow-sm mb-12 grid grid-cols-1 md:grid-cols-12 gap-6 items-center fade-up" style={{ transitionDelay: '0.1s' }}>
         {/* Search */}
-        <div className="md:col-span-3 relative">
-          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
+        <div className="md:col-span-3 relative group">
+          <Search className="w-4 h-4 text-neutral-dark/40 absolute left-4 top-1/2 -translate-y-1/2 transition-colors group-focus-within:text-accent" />
           <input
             type="text"
-            placeholder="Search mattress name or materials..."
+            placeholder="Search mattresses..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-zinc-200 focus:outline-hidden focus:ring-2 focus:ring-brand-500/20 text-xs font-sans placeholder-gray-400"
+            className="w-full pl-11 pr-4 py-3 rounded-xl border border-brand-200/50 focus:border-accent focus:ring-4 focus:ring-accent/10 text-sm font-body placeholder-neutral-dark/40 bg-neutral-light/30 transition-all outline-none"
           />
         </div>
 
-        {/* Tier filter */}
-        <div className="md:col-span-9 flex flex-wrap gap-3 items-center justify-start md:justify-end">
+        {/* Filters */}
+        <div className="md:col-span-9 flex flex-wrap gap-4 items-center justify-start md:justify-end">
           {/* Collection tabs */}
-          <div className="flex bg-zinc-100 p-1 rounded-xl border border-zinc-200 text-xs font-semibold">
+          <div className="flex bg-neutral-light/50 p-1.5 rounded-xl border border-brand-200/40 text-xs font-semibold">
             {(['all', 'luxury', 'premium', 'comfort'] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setSelectedTier(t)}
-                className={`px-3 py-1.5 rounded-lg font-display capitalize transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-lg font-accent capitalize transition-all cursor-pointer ${
                   selectedTier === t
-                    ? 'bg-brand-950 text-white shadow-xs'
-                    : 'text-zinc-500 hover:text-brand-950 hover:bg-zinc-200/50'
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-neutral-dark/60 hover:text-primary hover:bg-white/60'
                 }`}
               >
                 {t === 'all' ? 'All Tiers' : t}
@@ -165,7 +166,7 @@ export default function ProductList({
           <select
             value={selectedComfort}
             onChange={(e) => setSelectedComfort(e.target.value as any)}
-            className="bg-white border border-zinc-200 text-xs font-medium font-display px-3.5 py-2 rounded-xl text-zinc-700 focus:outline-hidden cursor-pointer"
+            className="bg-white border border-brand-200/50 text-xs font-medium font-accent px-4 py-2.5 rounded-xl text-primary focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all cursor-pointer outline-none appearance-none pr-8 relative bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[180px]"
           >
             <option value="all">Any Comfort/Firmness</option>
             <option value="soft">Soft & Plush Feel</option>
@@ -177,7 +178,7 @@ export default function ProductList({
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-white border border-zinc-200 text-xs font-medium font-display px-3.5 py-2 rounded-xl text-zinc-700 focus:outline-hidden cursor-pointer"
+            className="bg-white border border-brand-200/50 text-xs font-medium font-accent px-4 py-2.5 rounded-xl text-primary focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all cursor-pointer outline-none appearance-none pr-8 bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%227%22%20viewBox%3D%220%200%2012%207%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%201L6%206L11%201%22%20stroke%3D%22%231A2340%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-[position:calc(100%-12px)_center] min-w-[200px]"
           >
             <option value="popular">Sorted by Recommendation</option>
             <option value="priceAsc">Price: Low to High</option>
@@ -186,12 +187,12 @@ export default function ProductList({
           </select>
 
           {/* Checkbox: natural latex */}
-          <label className="flex items-center gap-2 text-xs font-display font-semibold text-zinc-700 bg-brand-50/50 border border-brand-200/60 px-3 py-2 rounded-xl hover:bg-brand-50 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-xs font-accent font-medium text-primary bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl hover:bg-accent/10 cursor-pointer select-none transition-colors">
             <input
               type="checkbox"
               checked={onlyLatex}
               onChange={(e) => setOnlyLatex(e.target.checked)}
-              className="rounded text-brand-600 focus:ring-brand-500/20 w-3.5 h-3.5 border-zinc-300"
+              className="rounded-md text-accent focus:ring-accent/20 w-4 h-4 border-brand-200/50 cursor-pointer"
             />
             <span>Pure Kerala Latex Only</span>
           </label>
@@ -201,7 +202,7 @@ export default function ProductList({
       {/* PRODUCT GRID BLOCKS */}
       <AnimatePresence mode="popLayout">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((p, index) => {
               const activeSize = getProductSize(p.slug);
               const price = getProductStartingPrice(p, activeSize);
@@ -212,65 +213,65 @@ export default function ProductList({
                 <>
                   {/* Luxury Gold/Silver Border for Luxury Tier */}
                   {p.tier === 'luxury' && (
-                    <div className="absolute top-0 inset-x-0 h-1 bg-linear-to-r from-luxury-gold to-yellow-500 z-10"></div>
+                    <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-accent via-accent-light to-accent z-10"></div>
                   )}
 
                   {/* Header metadata display */}
-                  <div className="p-4 bg-zinc-50/50 border-b border-zinc-100 flex items-center justify-between text-[11px] font-mono text-zinc-500 select-none">
-                    <span className="uppercase tracking-wider font-bold text-brand-600">{p.tier} collection</span>
-                    <span className="flex items-center gap-1">
-                      <Shield className="w-3.5 h-3.5" /> {p.warranty}Y Warranty
+                  <div className="p-5 bg-neutral-light/50 border-b border-brand-200/40 flex items-center justify-between text-[10px] font-mono text-neutral-dark/60 select-none">
+                    <span className="uppercase tracking-widest font-bold text-accent">{p.tier} collection</span>
+                    <span className="flex items-center gap-1.5 bg-white px-2 py-1 rounded-md border border-brand-200/50 shadow-sm font-accent text-primary">
+                      <Shield className="w-3 h-3 text-accent" /> {p.warranty}Y Warranty
                     </span>
                   </div>
 
                   {/* Product Image block */}
-                  <div className="h-48 md:h-52 relative overflow-hidden bg-zinc-100 cursor-pointer" onClick={() => onNavigateToPdp(p.slug)}>
+                  <div className="h-60 relative overflow-hidden bg-neutral-light cursor-pointer img-zoom" onClick={() => onNavigateToPdp(p.slug)}>
                     {p.badge && (
-                      <span className="absolute top-3 left-3 bg-brand-950/90 text-white font-mono text-[9px] tracking-wider uppercase font-bold px-2.5 py-1 rounded-full border border-white/20 shadow-sm z-10 max-w-[80%] truncate">
+                      <span className="absolute top-4 left-4 bg-primary/95 backdrop-blur-sm text-white font-accent text-[10px] tracking-widest uppercase font-bold px-3 py-1.5 rounded-full border border-white/10 shadow-lg z-10 max-w-[80%] truncate">
                         {p.badge}
                       </span>
                     )}
                     <img
                       src={p.image}
                       alt={p.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover transition-transform duration-700"
                       referrerPolicy="no-referrer"
                     />
                     
-                    {/* Tiny visual hover card overlay */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                      <span className="text-white text-xs font-display font-medium inline-flex items-center gap-1 bg-brand-950/80 px-3 py-1.5 rounded-lg border border-white/10">
-                        Explore Full Specifications <ChevronRight className="w-3 h-3" />
+                    {/* Glassmorphism hover card overlay */}
+                    <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center p-6">
+                      <span className="btn-primary bg-white text-primary text-xs font-accent font-bold px-6 py-3 rounded-xl shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                        Quick View <ChevronRight className="w-4 h-4 text-accent" />
                       </span>
                     </div>
                   </div>
 
                   {/* Core Card Info */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
                       {/* Name & Comfort rating line */}
-                      <div className="flex justify-between items-start gap-3">
+                      <div className="flex justify-between items-start gap-4">
                         <div>
-                          <h3 className="font-display font-bold text-lg text-brand-950 flex flex-wrap items-center gap-1">
+                          <h3 className="font-heading font-bold text-xl md:text-2xl text-primary flex flex-wrap items-center gap-2 mb-1">
                             {p.name}
                             {isBestSeller && (
-                              <span className="text-[9px] font-sans font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded text-center">Hand-Crafted</span>
+                              <span className="text-[9px] font-accent font-bold uppercase tracking-widest text-accent bg-accent/10 px-2 py-1 rounded-md border border-accent/20 text-center mt-1 sm:mt-0">Best Seller</span>
                             )}
                           </h3>
-                          <span className="text-[10px] text-gray-400 font-mono italic block">{p.tagline}</span>
+                          <span className="text-[11px] text-neutral-dark/50 font-body italic block">{p.tagline}</span>
                         </div>
                         
                         {/* Comfort label */}
-                        <div className="text-right">
-                          <span className="inline-block text-[10px] font-bold tracking-wider font-mono uppercase bg-neutral-100 text-zinc-700 px-2 py-0.5 rounded-full capitalize">
+                        <div className="text-right shrink-0">
+                          <span className="inline-block text-[10px] font-bold tracking-widest font-mono uppercase bg-neutral-light border border-brand-200/50 text-primary px-2.5 py-1 rounded-md capitalize">
                             {p.comfortLevel}
                           </span>
-                          <div className="flex items-center justify-end gap-0.5 mt-1">
+                          <div className="flex items-center justify-end gap-1 mt-2">
                             {Array.from({ length: 5 }).map((_, i) => (
                               <span
                                 key={i}
-                                className={`w-2 h-2 rounded-full ${
-                                  i < p.comfortRating ? 'bg-amber-400' : 'bg-gray-200'
+                                className={`w-2.5 h-2.5 rounded-full ${
+                                  i < p.comfortRating ? 'bg-accent shadow-sm' : 'bg-neutral-light border border-brand-200/50'
                                 }`}
                               ></span>
                             ))}
@@ -279,36 +280,42 @@ export default function ProductList({
                       </div>
 
                       {/* Brief description */}
-                      <p className="text-xs text-stone-600 mt-4 leading-relaxed line-clamp-2">
+                      <p className="text-sm text-neutral-dark/70 mt-5 leading-relaxed line-clamp-2 font-body">
                         {p.keyBenefit}
                       </p>
 
                       {/* Details specs bullets checklist */}
-                      <div className="mt-4 pt-4 border-t border-zinc-100 space-y-1.5 text-[11px] text-zinc-500 font-sans">
-                        <div className="flex items-center gap-2">
-                          <span className="w-1 h-1 rounded-full bg-brand-500 shrink-0"></span>
-                          <span>Thickness Profile: <strong className="text-brand-950 font-semibold">{p.totalThickness} Inches</strong> composite layers</span>
+                      <div className="mt-6 pt-5 border-t border-brand-200/40 space-y-2.5 text-xs text-neutral-dark/60 font-body">
+                        <div className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                          </div>
+                          <span>Thickness Profile: <strong className="text-primary font-bold">{p.totalThickness} Inches</strong> composite</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="w-1 h-1 rounded-full bg-brand-500 shrink-0"></span>
-                          <span>Cover Shell: <strong className="text-brand-950 font-semibold">{p.fabricGsm} GSM {p.fabricType.split(' ')[0]}</strong></span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                          </div>
+                          <span>Cover Shell: <strong className="text-primary font-bold">{p.fabricGsm} GSM {p.fabricType.split(' ')[0]}</strong></span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="w-1 h-1 rounded-full bg-brand-500 shrink-0"></span>
-                          <span>Natural Rubber India: <strong className="text-brand-950 font-semibold">{isLatex ? 'Yes, Organically Sourced' : 'Ortho Spine Foams'}</strong></span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                          </div>
+                          <span>Natural Rubber India: <strong className="text-primary font-bold">{isLatex ? 'Yes, Organic' : 'Ortho Foams'}</strong></span>
                         </div>
                       </div>
                     </div>
 
                     {/* Quick Mattress Size Configurator inside each block */}
-                    <div className="mt-4 pt-4 border-t border-zinc-100">
-                      <div className="flex justify-between items-center mb-2.5">
-                        <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest bg-zinc-100 px-2 py-0.5 rounded whitespace-nowrap">
-                          Active Size pricing
+                    <div className="mt-6 pt-5 border-t border-brand-200/40">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-[10px] font-mono text-neutral-dark/40 uppercase tracking-widest bg-neutral-light px-2.5 py-1 rounded-md">
+                          Select Size
                         </span>
                         
                         {/* Size button triggers */}
-                        <div className="flex gap-1">
+                        <div className="flex gap-1.5 bg-neutral-light/50 p-1 rounded-lg border border-brand-200/30">
                           {(['king', 'queen', 'double', 'single'] as MattressSize[]).map((sz) => (
                             <button
                               key={sz}
@@ -317,10 +324,10 @@ export default function ProductList({
                                 e.stopPropagation();
                                 setProductSize(p.slug, sz);
                               }}
-                              className={`w-7 h-6 rounded-md font-mono text-[9px] font-bold transition-all uppercase select-none cursor-pointer ${
+                              className={`w-8 h-7 rounded-md font-accent text-[10px] font-bold transition-all uppercase select-none cursor-pointer ${
                                 activeSize === sz
-                                  ? 'bg-brand-950 text-white'
-                                  : 'bg-zinc-100 text-zinc-500 hover:text-brand-950 hover:bg-zinc-200'
+                                  ? 'bg-primary text-white shadow-sm'
+                                  : 'text-neutral-dark/50 hover:text-primary hover:bg-white'
                               }`}
                             >
                               {sz[0]}
@@ -329,50 +336,44 @@ export default function ProductList({
                         </div>
                       </div>
 
-                      {/* Price indicator + Access premium note */}
-                      <div className="flex justify-between items-end bg-brand-50/40 p-2.5 rounded-xl border border-brand-200/30">
+                      {/* Price indicator */}
+                      <div className="flex justify-between items-end bg-accent/5 p-4 rounded-2xl border border-accent/10">
                         <div>
-                          <span className="text-[10px] font-mono text-brand-800 tracking-wider font-semibold block uppercase">DIRECT FOR {activeSize}</span>
-                          <span className="text-xl font-bold font-display text-brand-950">
+                          <span className="text-[10px] font-accent text-accent-dark tracking-widest font-bold block uppercase mb-1">DIRECT FROM FACTORY</span>
+                          <span className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
                             ₹{price.toLocaleString('en-IN')}
+                            <span className="text-sm font-body text-neutral-dark/40 line-through font-normal">
+                              ₹{Math.round(price * 1.4).toLocaleString('en-IN')}
+                            </span>
                           </span>
                         </div>
                         
-                        {p.pricingModel === 'with_without_accessories' && (
-                          <div className="text-right text-[9px] text-gray-400 font-mono max-w-[120px] leading-tight">
-                            *Excludes pillow set pricing. Accessories options at cart checkout step.
-                          </div>
-                        )}
-                        {p.pricingModel === 'fabric_options' && (
-                          <div className="text-right text-[9px] text-gray-400 font-mono max-w-[120px] leading-tight">
-                            *Reflects base 300 GSM model cover wrap.
-                          </div>
-                        )}
+                        <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[120px] leading-tight">
+                          {p.pricingModel === 'with_without_accessories' ? 
+                            '*Excludes pillow set. Add accessories at checkout.' : 
+                            '*Reflects base 300 GSM model cover wrap.'}
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Actions buttons */}
-                  <div className="p-4 bg-zinc-50 border-t border-zinc-100 grid grid-cols-2 gap-2 text-xs">
+                  <div className="p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 gap-3 text-xs rounded-b-2xl">
                     <button
-                      id={`btn-details-${p.slug}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onNavigateToPdp(p.slug);
-                      }}
-                      className="py-2.5 px-3 rounded-lg border border-zinc-200 hover:border-brand-500 bg-white hover:bg-zinc-50 font-display font-semibold text-zinc-800 flex items-center justify-center gap-1 cursor-pointer transition-all"
+                      onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}
+                      className="py-3 px-4 rounded-xl border-2 border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-2 cursor-pointer transition-all focus:outline-none focus:ring-4 focus:ring-accent/10"
                     >
-                      <Info className="w-3.5 h-3.5" /> Detail Specs
+                      <Info className="w-4 h-4 text-accent" /> View Details
                     </button>
                     <button
-                      id={`btn-shop-${p.slug}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         onAddToCartDirect(p, activeSize, false);
+                        onNavigate('cart');
                       }}
-                      className="py-2.5 px-3 rounded-lg bg-brand-950 hover:bg-brand-800 active:bg-black text-white font-display font-semibold flex items-center justify-center gap-1 cursor-pointer shadow-xs transition-all"
+                      className="btn-primary py-3 px-4 rounded-xl bg-primary text-white font-accent font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md focus:outline-none focus:ring-4 focus:ring-primary/20"
                     >
-                      <ShoppingCart className="w-3.5 h-3.5" /> Buy Direct
+                      <ShoppingCart className="w-4 h-4 text-white/80" /> Add to Cart
                     </button>
                   </div>
                 </>
@@ -382,19 +383,19 @@ export default function ProductList({
                 <motion.div
                   key={p.slug}
                   layout
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.3) }}
-                  className="h-full cursor-pointer"
+                  transition={{ duration: 0.4, delay: Math.min(index * 0.08, 0.4) }}
+                  className="h-full cursor-pointer fade-up"
                   onClick={() => onNavigateToPdp(p.slug)}
                 >
                   {isBestSeller ? (
-                    <ShineBorder className="h-full flex flex-col justify-between group">
+                    <ShineBorder className="h-full flex flex-col justify-between group rounded-2xl bg-white card-hover shadow-sm border border-brand-200/40">
                       {cardInner}
                     </ShineBorder>
                   ) : (
-                    <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm overflow-hidden flex flex-col justify-between group h-full relative hover:shadow-lg hover:border-brand-200/50 transition-all duration-300">
+                    <div className="bg-white rounded-2xl border border-brand-200/40 shadow-sm overflow-hidden flex flex-col justify-between group h-full relative card-hover">
                       {cardInner}
                     </div>
                   )}
@@ -403,11 +404,17 @@ export default function ProductList({
             })}
           </div>
         ) : (
-          <div className="text-center py-20 bg-zinc-50 p-6 rounded-3xl border border-zinc-100">
-            <AlertCircle className="w-12 h-12 text-zinc-400 mx-auto mb-4" />
-            <h3 className="font-display font-bold text-lg text-brand-950">No Mattresses Match Filters</h3>
-            <p className="text-gray-500 text-sm mt-1 max-w-sm mx-auto leading-relaxed">
-              Try updating search queries, clearing "Kerala Latex Only" parameters, or choosing another collection tier to discover RelaxPro models.
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-24 bg-neutral-light p-8 rounded-3xl border border-brand-200/40 max-w-2xl mx-auto"
+          >
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-brand-200/40">
+              <AlertCircle className="w-10 h-10 text-accent" />
+            </div>
+            <h3 className="font-heading font-bold text-2xl text-primary mb-3">No Mattresses Match Filters</h3>
+            <p className="text-neutral-dark/60 text-base leading-relaxed mb-8 font-body">
+              Try updating your search queries, clearing the "Pure Kerala Latex" parameter, or choosing another collection tier to discover our premium models.
             </p>
             <button
               onClick={() => {
@@ -416,29 +423,37 @@ export default function ProductList({
                 setSelectedComfort('all');
                 setOnlyLatex(false);
               }}
-              className="mt-5 inline-flex items-center gap-1.5 bg-brand-950 hover:bg-brand-800 text-white font-display text-xs font-semibold px-4 py-2.5 rounded-xl cursor-pointer"
+              className="btn-primary inline-flex items-center gap-2 bg-primary text-white font-accent text-sm font-bold px-6 py-3.5 rounded-xl cursor-pointer shadow-md"
             >
-              <RefreshCw className="w-3.5 h-3.5" /> Reset Filter Matrix
+              <RefreshCw className="w-4 h-4 text-white/80" /> Reset Filter Matrix
             </button>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
       {/* Trust Callout */}
-      <section className="bg-linear-to-r from-brand-100 via-brand-50 to-brand-100 mt-20 p-8 rounded-3xl border border-brand-200/50 flex flex-col md:flex-row gap-6 items-center justify-between">
-        <div className="max-w-xl">
-          <span className="text-[10px] tracking-wider font-mono text-brand-600 uppercase bg-amber-200/70 py-0.5 px-2 rounded font-bold">ORTHOPEDIC CONFIDENCE</span>
-          <h3 className="text-xl md:text-2xl font-display font-medium text-brand-950 mt-2">Can't decide on structural layers?</h3>
-          <p className="text-gray-600 text-xs mt-2 leading-relaxed">
+      <section className="bg-gradient-to-br from-primary to-primary/95 text-white mt-24 p-8 md:p-12 rounded-[2rem] border border-primary/20 flex flex-col md:flex-row gap-8 items-center justify-between shadow-xl relative overflow-hidden fade-up">
+        {/* Abstract background shapes */}
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brand-200/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-2xl relative z-10">
+          <span className="inline-flex items-center gap-2 text-[10px] tracking-widest font-accent text-accent uppercase bg-accent/10 px-3 py-1 rounded-full font-bold border border-accent/20">
+            <Shield className="w-3 h-3" /> Orthopedic Confidence
+          </span>
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mt-4 leading-tight">
+            Can't decide on structural layers?
+          </h3>
+          <p className="text-neutral-light/80 text-sm md:text-base mt-4 leading-relaxed font-body">
             Every spinal structure has unique density requirements. RelaxPro allows you to custom engineer density blends, accessories, and outer quilted weaves. Open our 3D interactive builder.
           </p>
         </div>
         <button
           onClick={() => onNavigate('builder')}
-          className="bg-brand-950 hover:bg-brand-800 text-white text-xs font-semibold font-display tracking-wider uppercase py-3.5 px-5 rounded-xl flex items-center gap-1.5 shrink-0 group transition-all shadow-md shadow-brand-950/20 cursor-pointer"
+          className="btn-primary bg-white text-primary text-sm font-bold font-accent tracking-wide uppercase py-4 px-8 rounded-xl flex items-center gap-2 shrink-0 group shadow-xl hover:shadow-2xl hover:bg-neutral-light cursor-pointer relative z-10"
         >
-          <Sparkles className="w-4 h-4 text-brand-500" /> Start 3D Customizer
-          <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          <Sparkles className="w-5 h-5 text-accent" /> Start 3D Customizer
+          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </section>
     </div>
