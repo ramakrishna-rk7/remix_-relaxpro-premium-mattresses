@@ -252,24 +252,24 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
         </div>
 
         {/* Slider Controls */}
-        <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+        <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-3 z-20">
           <button
             onClick={prevSlide}
-            className="p-1.5 rounded-full transition-colors cursor-pointer bg-white/10 text-white hover:bg-white/20"
+            className="p-1 md:p-1.5 rounded-full transition-colors cursor-pointer bg-white/10 text-white hover:bg-white/20"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-3 h-3 md:w-4 md:h-4" />
           </button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 md:gap-2">
             {[0, 1].map((idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`h-1.5 md:h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   currentSlide === idx
-                    ? 'bg-accent w-6'
-                    : 'bg-white/20 w-2'
+                    ? 'bg-accent w-4 md:w-6'
+                    : 'bg-white/20 w-1.5 md:w-2'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -278,10 +278,10 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
 
           <button
             onClick={nextSlide}
-            className="p-1.5 rounded-full transition-colors cursor-pointer bg-white/10 text-white hover:bg-white/20"
+            className="p-1 md:p-1.5 rounded-full transition-colors cursor-pointer bg-white/10 text-white hover:bg-white/20"
             aria-label="Next slide"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
           </button>
         </div>
       </div>

@@ -328,24 +328,27 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
             </div>
 
             {/* Pricing Box & Add to Cart */}
-            <div className="mt-8 bg-primary text-white p-8 rounded-[2rem] shadow-xl border border-primary/20 flex flex-col items-center justify-center text-center relative overflow-hidden">
-              {/* Decorative background glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/20 blur-[80px] rounded-full pointer-events-none"></div>
-
-              <span className="text-[10px] tracking-widest font-accent font-bold text-accent block uppercase mb-3 relative z-10">Direct-to-Consumer Value</span>
-              <div className="text-5xl font-heading font-bold text-white relative z-10 flex items-center gap-4">
-                ₹{activePrice.toLocaleString('en-IN')}
-                <span className="text-xl text-white/40 line-through font-normal">₹{Math.round(activePrice * 1.4).toLocaleString('en-IN')}</span>
-              </div>
-              <p className="text-xs text-white/60 font-body mt-3 relative z-10 flex items-center gap-2">
-                <Check className="w-3 h-3 text-success" /> Tax Included • Free Shipping
+            <div className="mt-8 p-6 bg-white border border-gray-100 rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] font-sans">
+              <p className="text-xs font-semibold tracking-wider text-gray-500 uppercase mb-2">
+                Direct-to-Consumer Value
               </p>
-              
+
+              <div className="flex items-baseline gap-3 mb-1">
+                <span className="text-4xl font-bold text-gray-900 tracking-tight">₹{activePrice.toLocaleString('en-IN')}</span>
+                <span className="text-lg text-gray-400 line-through">₹{Math.round(activePrice * 1.4).toLocaleString('en-IN')}</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+                <Check className="w-4 h-4 text-green-500" />
+                <span>Tax Included &bull; Free Shipping</span>
+              </div>
+
               <button
                 onClick={handleAddToCart}
-                className="w-full mt-8 btn-primary bg-accent hover:bg-accent-dark text-white font-accent font-bold text-sm tracking-wide py-4 px-8 rounded-xl flex items-center justify-center gap-3 cursor-pointer shadow-[0_0_40px_rgba(212,168,83,0.4)] transition-all relative z-10"
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
               >
-                <ShoppingCart className="w-5 h-5" /> Add to Cart — Secure Checkout
+                <ShoppingCart className="w-5 h-5" />
+                <span>Add to Cart — Secure Checkout</span>
               </button>
             </div>
 
