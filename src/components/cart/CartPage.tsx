@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
-import { CartItem } from '../../types';
+import { CartItem, OrderReceipt } from '../../types';
 import { submitLead } from '../../utils/googleSheets';
 
 interface CartPageProps {
@@ -9,7 +9,7 @@ interface CartPageProps {
   onUpdateQty: (id: string, qty: number) => void;
   onRemoveItem: (id: string) => void;
   onClearCart: () => void;
-  onCheckoutSuccess: (orderId: string, summary: any) => void;
+  onCheckoutSuccess: (orderId: string, summary: OrderReceipt) => void;
   onNavigate: (page: string) => void;
 }
 

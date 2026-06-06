@@ -1,8 +1,10 @@
-export async function submitLead(data: any) {
+import { LeadFormData } from '../types';
+
+export async function submitLead(data: LeadFormData): Promise<boolean> {
   try {
-    const meta = import.meta as any;
+    const meta = import.meta as { env?: Record<string, string | undefined> };
     const envUrl = meta.env?.VITE_PUBLIC_GOOGLE_SCRIPT_URL || meta.env?.VITE_GOOGLE_SCRIPT_URL || meta.env?.PUBLIC_GOOGLE_SCRIPT_URL;
-    const scriptUrl = envUrl || "https://script.google.com/macros/s/AKfycbweoqpHPwykNsd_pK_bhyR_V5QRBTdYUa22cRWfSbLYusViz7MogttuMKw8_k-B-KLZ/exec";
+    const scriptUrl = envUrl;
 
     console.log("Attempting to submit lead data to Google Sheet:", data);
 

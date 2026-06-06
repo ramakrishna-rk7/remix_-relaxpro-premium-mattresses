@@ -35,7 +35,7 @@ export function useIntersectionObserver<T extends HTMLElement = HTMLDivElement>(
     observer.observe(element);
 
     return () => {
-      observer.unobserve(element);
+      observer.disconnect();
     };
   }, [threshold, rootMargin, triggerOnce]);
 

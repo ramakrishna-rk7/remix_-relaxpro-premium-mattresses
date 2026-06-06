@@ -501,21 +501,18 @@ export const LOCATIONS = [
     city: 'Hyderabad',
     address: 'RelaxPro Factory Showroom, Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad, Telangana - 500055',
     phones: ['+918977024494', '+917207424494'],
-    hours: 'Mon - Sun: 10:00 AM - 9:00 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.41!2d78.434!3d17.415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb973a00000001%3A0x6bba8dddb9c17679!2sHyderabad!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin'
+    hours: 'Mon - Sun: 10:00 AM - 9:00 PM'
   },
   {
     city: 'Rajahmundry',
     address: 'RelaxPro Experience Store, Danavaipeta Mall Road, Opposite Municipal Complex, Rajahmundry, Andhra Pradesh - 533103',
     phones: ['+918977024494'],
-    hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.11!2d81.777!3d17.000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a3b333333333%3A0x1111111111111111!2sRajahmundry!5e0!3m2!1sen!2sin!4v1620000000001!5m2!1sen!2sin'
+    hours: 'Mon - Sat: 10:00 AM - 8:30 PM, Sun: 11:00 AM - 7:00 PM'
   },
   {
     city: 'Bangalore',
     address: 'RelaxPro Partner Store, Indiranagar 100 Feet Road, Near Halasuru Metro Station, Bangalore, Karnataka - 560038',
     phones: ['+917207424494'],
-    hours: 'Mon - Sun: 10:30 AM - 8:30 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.91!2d77.638!3d12.971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13f000000001%3A0x1111111111111112!2sIndiranagar!5e0!3m2!1sen!2sin!4v1620000000002!5m2!1sen!2sin'
+    hours: 'Mon - Sun: 10:30 AM - 8:30 PM'
   }
 ];

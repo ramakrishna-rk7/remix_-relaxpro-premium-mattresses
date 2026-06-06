@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -25,7 +25,6 @@ import {
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import WhatsAppFAB from './components/layout/WhatsAppFAB';
-import MattressBuilder from './components/builder/MattressBuilder';
 import CompareTable from './components/product/CompareTable';
 import ProductList from './components/product/ProductList';
 import ProductDetail from './components/product/ProductDetail';
@@ -37,6 +36,11 @@ import CartPage from './components/cart/CartPage';
 import SEO from './components/seo/SEO';
 import WhyChooseUs from './components/home/WhyChooseUs';
 import ScrollToTop from './components/ui/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
+import NotFound from './components/NotFound';
+
+// Code-split heavy route bundles
+const MattressBuilder = lazy(() => import('./components/builder/MattressBuilder'));
 
 // Hooks
 import { useGlobalScrollAnimations } from './hooks/useIntersectionObserver';
@@ -49,14 +53,14 @@ import Confetti from './components/ui/Confetti';
 import ShineBorder from './components/ui/ShineBorder';
 
 // Data types & products
-import { CartItem, Product, MattressSize } from './types';
+import { CartItem, Product, MattressSize, OrderReceipt } from './types';
 import { PRODUCTS, TESTIMONIALS, LOCATIONS } from './data/products';
 import HeroSlider from './components/home/HeroSlider';
 
 function AppContent() {
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [orderReceipt, setOrderReceipt] = useState<any | null>(null);
+  const [orderReceipt, setOrderReceipt] = useState<OrderReceipt | null>(null);
   const [selectedTier, setSelectedTier] = useState<'all' | 'luxury' | 'premium' | 'comfort'>('all');
 
   // Initialize global scroll animations
@@ -145,7 +149,7 @@ function AppContent() {
   };
 
   // Checkout submission success handler
-  const handleCheckoutSuccess = (orderId: string, orderSummary: any) => {
+  const handleCheckoutSuccess = (orderId: string, orderSummary: OrderReceipt) => {
     setOrderReceipt(orderSummary);
     saveCart([]);
     navigate('/success');
@@ -198,7 +202,13 @@ function AppContent() {
 
       {/* Main Content Render */}
       <main className="flex-1">
-        <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="min-h-[60vh] flex items-center justify-center">
+              <div className="animate-pulse text-brand-700 text-sm uppercase tracking-[0.3em]">Loading…</div>
+            </div>
+          }>
+            <Routes>
           {/* HOME ROUTE */}
           <Route path="/" element={
             <motion.div
@@ -814,8 +824,11 @@ function AppContent() {
                 </>
               )}
             </motion.div>
-          } />
-        </Routes>
+            } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
 
       {/* Universal footer */}
@@ -831,7 +844,17 @@ function AppContent() {
 }
 
 // Wrapper to parse slug parameters for PDP dynamically
-function PdpRouteWrapper({ onAddToCartDirect, onNavigate }: any) {
+interface PdpRouteWrapperProps {
+  onAddToCartDirect: (
+    product: Product,
+    size: MattressSize,
+    includeAccessories: boolean,
+    fabricOption?: '300GSM' | '450GSM'
+  ) => void;
+  onNavigate: (page: string) => void;
+}
+
+function PdpRouteWrapper({ onAddToCartDirect, onNavigate }: PdpRouteWrapperProps) {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const product = PRODUCTS.find(p => p.slug === slug);

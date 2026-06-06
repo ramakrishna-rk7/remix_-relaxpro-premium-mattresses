@@ -25,7 +25,10 @@ export default function Footer() {
       setTimeout(() => setEmailError(false), 600);
       return;
     }
+    const subject = encodeURIComponent('RelaxPro newsletter subscription');
+    const body = encodeURIComponent(`Please add me to the RelaxPro newsletter.\n\nEmail: ${email}`);
     setSubscribed(true);
+    window.location.href = `mailto:relaxpro2022@gmail.com?subject=${subject}&body=${body}`;
     setEmail('');
   };
 
@@ -188,7 +191,7 @@ export default function Footer() {
             {subscribed ? (
               <div className="newsletter-success flex items-center gap-2 bg-success/20 text-success px-4 py-3 rounded-xl text-xs font-semibold">
                 <Check className="w-4 h-4" />
-                You're subscribed! Welcome aboard.
+                Opening your email client…
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex gap-0">

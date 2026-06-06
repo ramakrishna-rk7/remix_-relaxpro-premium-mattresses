@@ -11,7 +11,6 @@ export default function ConsultationForm() {
   const [customNotes, setCustomNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [countdown, setCountdown] = useState(4);
   const [validationError, setValidationError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {

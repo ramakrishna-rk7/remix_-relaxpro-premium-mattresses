@@ -73,3 +73,35 @@ export interface Testimonial {
   comment: string;
   product: string;
 }
+
+export interface LeadFormData {
+  orderId: string;
+  name: string;
+  phone: string;
+  email?: string;
+  city?: string;
+  address?: string;
+  pincode?: string;
+  contactTime?: string;
+  product?: string;
+  size?: string;
+  price?: string | number;
+  notes?: string;
+  source?: string;
+}
+
+export interface OrderReceipt {
+  orderId: string;
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  city: string;
+  zip: string;
+  contactTime: string;
+  notes: string;
+  subtotal: number;
+  discountAmount: number;
+  grandTotal: number;
+  cart: CartItem[];
+}

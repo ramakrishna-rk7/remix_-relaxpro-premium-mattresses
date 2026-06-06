@@ -42,12 +42,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://remix-relaxpro-matress.vercel.app/cart</loc>
-    <lastmod>2026-06-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.3</priority>
-  </url>
   <!-- Mattresses Collection -->
   <url>
     <loc>https://remix-relaxpro-matress.vercel.app/mattresses/nirvana</loc>

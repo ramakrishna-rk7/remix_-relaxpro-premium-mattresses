@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
   title: string;
@@ -10,16 +11,20 @@ interface SEOProps {
   schema?: Record<string, any> | Record<string, any>[];
 }
 
-export default function SEO({ 
-  title, 
-  description, 
-  canonical, 
-  ogType = 'website', 
-  ogImage = 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80', 
-  schema 
+export default function SEO({
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+  ogImage = 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80',
+  schema
 }: SEOProps) {
   const siteUrl = 'https://remix-relaxpro-matress.vercel.app';
-  const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
+  const location = useLocation();
+  const computedPath = canonical ?? `${location.pathname}${location.search}`;
+  const fullCanonical = computedPath.startsWith('http')
+    ? computedPath
+    : `${siteUrl}${computedPath.startsWith('/') ? computedPath : `/${computedPath}`}`;
 
   return (
     <Helmet>

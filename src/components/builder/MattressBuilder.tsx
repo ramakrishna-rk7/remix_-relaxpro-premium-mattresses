@@ -130,6 +130,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
   const [selectedTop, setSelectedTop] = useState<LayerOption>(COMFORT_TOPPER_LAYERS[1]);
   const [selectedFabric, setSelectedFabric] = useState(FABRICS[1]);
   const [includeAccessories, setIncludeAccessories] = useState<boolean>(true);
+  const [addedToast, setAddedToast] = useState(false);
 
   const SIZE_LABELS = {
     king: 'King Size (72" x 78")',
@@ -177,12 +178,25 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
     };
 
     onAddToCart(newItem);
-    alert('🎉 Your custom mattress layout has been built and added to the cart successfully!');
-    onNavigate('cart');
+    setAddedToast(true);
+    setTimeout(() => {
+      setAddedToast(false);
+      onNavigate('cart');
+    }, 1400);
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 py-20 md:py-24 relative font-sans">
+      {addedToast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-brand-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 text-sm font-medium animate-[fadeIn_0.2s_ease-out]"
+        >
+          <Check size={18} className="text-green-300" />
+          <span>Custom mattress added to cart</span>
+        </div>
+      )}
       
       {/* Editorial Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">

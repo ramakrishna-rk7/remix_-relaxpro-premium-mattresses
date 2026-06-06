@@ -1,9 +1,10 @@
 import React from 'react';
 
-interface ShineBorderProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ShineBorderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'key'> {
   children: React.ReactNode;
   className?: string;
-  key?: string;
+  key?: React.Key | null;
+  style?: React.CSSProperties;
 }
 
 export default function ShineBorder({ children, className = '', ...props }: ShineBorderProps) {

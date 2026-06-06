@@ -7,6 +7,7 @@ interface BlurFadeProps {
   delay?: number;
   yOffset?: number;
   blur?: string;
+  key?: React.Key | null;
 }
 
 export default function BlurFade({

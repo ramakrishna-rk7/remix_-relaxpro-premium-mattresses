@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Check, Shield, Award, HelpCircle, ShoppingCart, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
+import SafeImage from '../ui/SafeImage';
 
 interface ProductDetailProps {
   product: Product;
@@ -85,7 +86,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                 {product.badge}
               </span>
             )}
-            <img
+            <SafeImage
               src={product.image}
               alt={product.name}
               className="w-full h-[400px] md:h-[550px] object-cover transition-transform duration-700 group-hover:scale-105"
