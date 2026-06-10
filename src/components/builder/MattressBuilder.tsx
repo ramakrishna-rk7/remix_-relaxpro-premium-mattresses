@@ -32,7 +32,7 @@ const BASE_LAYERS: LayerOption[] = [
     material: 'latex_rebonded',
     thickness: 4,
     priceFactor: { king: 16000, queen: 13500, double: 11000, single: 8500 },
-    color: 'bg-amber-800',
+    color: 'bg-blue-800',
     description: 'Premium bonded latex shreds. Zero synthetic foam, higher elasticity, and great air circulation.'
   }
 ];
@@ -65,7 +65,7 @@ const TRANSITION_LAYERS: LayerOption[] = [
     material: 'latex',
     thickness: 2,
     priceFactor: { king: 10000, queen: 8500, double: 6800, single: 5000 },
-    color: 'bg-amber-100',
+    color: 'bg-blue-100',
     description: 'Pure elastic responsive transition for active springiness and motion isolation.'
   }
 ];
@@ -98,7 +98,7 @@ const COMFORT_TOPPER_LAYERS: LayerOption[] = [
     material: 'latex',
     thickness: 4,
     priceFactor: { king: 21000, queen: 18000, double: 14500, single: 11000 },
-    color: 'bg-amber-50',
+    color: 'bg-blue-50',
     description: '7 segmented density zones targeted precisely for head, shoulders, back, and hips.'
   }
 ];
@@ -200,7 +200,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
       
       {/* Editorial Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <span className="text-xs tracking-wider font-semibold text-amber-600 uppercase mb-2 block">
+        <span className="text-xs tracking-wider font-semibold text-blue-600 uppercase mb-2 block">
           Direct From Kerala Factory
         </span>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight text-gray-900 leading-tight">
@@ -219,7 +219,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
             <div className="relative z-10">
               <h3 className="font-bold text-xl text-gray-900 mb-2 flex items-center justify-between">
                 <span>Live Visualizer</span>
-                <span className="text-xs font-bold text-amber-600 px-3 py-1 bg-amber-50 rounded-full">{totalThickness}" Overall Profile</span>
+                <span className="text-xs font-bold text-blue-600 px-3 py-1 bg-blue-50 rounded-full">{totalThickness}" Overall Profile</span>
               </h3>
               <p className="text-sm text-gray-500 mb-8">Dynamic representation of your selections</p>
 
@@ -290,12 +290,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
               </div>
 
               {includeAccessories && (
-                <div className="bg-amber-50 p-4 rounded-xl border border-amber-100 mb-6 flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 border border-amber-200">
-                    <Sparkles className="w-4 h-4 text-amber-500" />
+                <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mb-6 flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 border border-blue-200">
+                    <Sparkles className="w-4 h-4 text-blue-500" />
                   </div>
-                  <p className="text-xs text-amber-900/80 leading-relaxed">
-                    <strong className="font-bold text-amber-900 block text-sm mb-0.5">Bonus Pack Attached</strong>
+                  <p className="text-xs text-blue-900/80 leading-relaxed">
+                    <strong className="font-bold text-blue-900 block text-sm mb-0.5">Bonus Pack Attached</strong>
                     Includes 2 Ergonomic Latex Pillows & 1 Premium Waterproof Protector.
                   </p>
                 </div>
@@ -303,7 +303,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
 
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white py-4 px-6 rounded-xl font-semibold tracking-wide transition-colors duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-accent hover:bg-accent-dark text-white py-4 px-6 rounded-xl font-semibold tracking-wide transition-colors duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>Add to Cart — Secure Checkout</span>
@@ -327,12 +327,12 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   onClick={() => setSize(sz)}
                   className={`p-4 rounded-xl text-center border cursor-pointer transition-colors duration-200 ${
                     size === sz
-                      ? 'border-amber-500 bg-amber-50 ring-2 ring-amber-500 text-amber-900'
+                      ? 'border-accent bg-accent/5 ring-2 ring-accent text-accent-dark'
                       : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-900'
                   }`}
                 >
                   <span className="font-bold text-sm capitalize block mb-1">{sz}</span>
-                  <span className={`text-[11px] font-medium ${size === sz ? 'text-amber-700' : 'text-gray-500'}`}>
+                  <span className={`text-[11px] font-medium ${size === sz ? 'text-blue-700' : 'text-gray-500'}`}>
                     {sz === 'king' ? '72"x78"' : sz === 'queen' ? '60"x78"' : sz === 'double' ? '48"x75"' : '36"x75"'}
                   </span>
                 </div>
@@ -352,7 +352,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   onClick={() => setSelectedBase(base)}
                   className={`p-5 rounded-2xl cursor-pointer transition-colors duration-200 relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
                     selectedBase.id === base.id
-                      ? 'bg-amber-50 ring-2 ring-amber-500 border-transparent text-amber-900'
+                      ? 'bg-accent/5 ring-2 ring-accent border-transparent text-accent-dark'
                       : 'bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
@@ -360,16 +360,16 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                     <span className={`w-4 h-4 rounded-full mt-1 shrink-0 border border-black/10 ${base.color}`}></span>
                     <div>
                       <h4 className="font-bold text-base mb-1">{base.name}</h4>
-                      <p className={`text-sm leading-relaxed ${selectedBase.id === base.id ? 'text-amber-800/80' : 'text-gray-500'}`}>{base.description}</p>
+                      <p className={`text-sm leading-relaxed ${selectedBase.id === base.id ? 'text-blue-800/80' : 'text-gray-500'}`}>{base.description}</p>
                     </div>
                   </div>
                   <div className="sm:text-right shrink-0">
-                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedBase.id === base.id ? 'bg-amber-100/50 border-amber-200 text-amber-800' : 'bg-white border-gray-200 text-gray-900'}`}>
+                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedBase.id === base.id ? 'bg-blue-100/50 border-blue-200 text-blue-800' : 'bg-white border-gray-200 text-gray-900'}`}>
                       ₹{base.priceFactor[size].toLocaleString('en-IN')}
                     </span>
                   </div>
                   {selectedBase.id === base.id && (
-                    <div className="absolute top-4 right-4 text-amber-500">
+                    <div className="absolute top-4 right-4 text-blue-500">
                       <Check className="w-5 h-5" />
                     </div>
                   )}
@@ -390,7 +390,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   onClick={() => setSelectedTransition(trans)}
                   className={`p-5 rounded-2xl cursor-pointer transition-colors duration-200 relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
                     selectedTransition.id === trans.id
-                      ? 'bg-amber-50 ring-2 ring-amber-500 border-transparent text-amber-900'
+                      ? 'bg-accent/5 ring-2 ring-accent border-transparent text-accent-dark'
                       : 'bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
@@ -404,16 +404,16 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                       <h4 className="font-bold text-base mb-1">
                         {trans.name} {trans.thickness > 0 && <span className="text-xs font-semibold uppercase ml-1 opacity-70">({trans.thickness}")</span>}
                       </h4>
-                      <p className={`text-sm leading-relaxed ${selectedTransition.id === trans.id ? 'text-amber-800/80' : 'text-gray-500'}`}>{trans.description}</p>
+                      <p className={`text-sm leading-relaxed ${selectedTransition.id === trans.id ? 'text-blue-800/80' : 'text-gray-500'}`}>{trans.description}</p>
                     </div>
                   </div>
                   <div className="sm:text-right shrink-0">
-                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedTransition.id === trans.id ? 'bg-amber-100/50 border-amber-200 text-amber-800' : 'bg-white border-gray-200 text-gray-900'}`}>
+                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedTransition.id === trans.id ? 'bg-blue-100/50 border-blue-200 text-blue-800' : 'bg-white border-gray-200 text-gray-900'}`}>
                       {trans.priceFactor[size] === 0 ? 'INCLUDED' : `+ ₹${trans.priceFactor[size].toLocaleString('en-IN')}`}
                     </span>
                   </div>
                   {selectedTransition.id === trans.id && (
-                    <div className="absolute top-4 right-4 text-amber-500">
+                    <div className="absolute top-4 right-4 text-blue-500">
                       <Check className="w-5 h-5" />
                     </div>
                   )}
@@ -434,7 +434,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   onClick={() => setSelectedTop(top)}
                   className={`p-5 rounded-2xl cursor-pointer transition-colors duration-200 relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
                     selectedTop.id === top.id
-                      ? 'bg-amber-50 ring-2 ring-amber-500 border-transparent text-amber-900'
+                      ? 'bg-accent/5 ring-2 ring-accent border-transparent text-accent-dark'
                       : 'bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
@@ -448,16 +448,16 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                       <h4 className="font-bold text-base mb-1">
                         {top.name} {top.thickness > 0 && <span className="text-xs font-semibold uppercase ml-1 opacity-70">({top.thickness}")</span>}
                       </h4>
-                      <p className={`text-sm leading-relaxed ${selectedTop.id === top.id ? 'text-amber-800/80' : 'text-gray-500'}`}>{top.description}</p>
+                      <p className={`text-sm leading-relaxed ${selectedTop.id === top.id ? 'text-blue-800/80' : 'text-gray-500'}`}>{top.description}</p>
                     </div>
                   </div>
                   <div className="sm:text-right shrink-0">
-                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedTop.id === top.id ? 'bg-amber-100/50 border-amber-200 text-amber-800' : 'bg-white border-gray-200 text-gray-900'}`}>
+                    <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${selectedTop.id === top.id ? 'bg-blue-100/50 border-blue-200 text-blue-800' : 'bg-white border-gray-200 text-gray-900'}`}>
                       {top.priceFactor[size] === 0 ? 'INCLUDED' : `+ ₹${top.priceFactor[size].toLocaleString('en-IN')}`}
                     </span>
                   </div>
                   {selectedTop.id === top.id && (
-                    <div className="absolute top-4 right-4 text-amber-500">
+                    <div className="absolute top-4 right-4 text-blue-500">
                       <Check className="w-5 h-5" />
                     </div>
                   )}
@@ -478,23 +478,23 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   onClick={() => setSelectedFabric(fabric)}
                   className={`p-5 rounded-2xl cursor-pointer transition-colors duration-200 relative ${
                     selectedFabric.id === fabric.id
-                      ? 'bg-amber-50 ring-2 ring-amber-500 border-transparent text-amber-900'
+                      ? 'bg-accent/5 ring-2 ring-accent border-transparent text-accent-dark'
                       : 'bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                   }`}
                 >
                   <div className="flex justify-between items-start mb-3 pr-6">
-                    <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-1 rounded ${selectedFabric.id === fabric.id ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-600'}`}>
+                    <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-1 rounded ${selectedFabric.id === fabric.id ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-600'}`}>
                       {fabric.id === 'f1' ? 'Standard Core' : 'Premium Air-Flow'}
                     </span>
                   </div>
                   <h4 className="font-bold text-base mb-1">{fabric.name}</h4>
-                  <p className={`text-sm mb-4 leading-relaxed ${selectedFabric.id === fabric.id ? 'text-amber-800/80' : 'text-gray-500'}`}>{fabric.description}</p>
-                  <span className={`font-semibold text-sm ${selectedFabric.id === fabric.id ? 'text-amber-800' : 'text-gray-900'}`}>
+                  <p className={`text-sm mb-4 leading-relaxed ${selectedFabric.id === fabric.id ? 'text-blue-800/80' : 'text-gray-500'}`}>{fabric.description}</p>
+                  <span className={`font-semibold text-sm ${selectedFabric.id === fabric.id ? 'text-blue-800' : 'text-gray-900'}`}>
                     + ₹{fabric.price[size].toLocaleString('en-IN')}
                   </span>
                   
                   {selectedFabric.id === fabric.id && (
-                    <div className="absolute top-4 right-4 text-amber-500">
+                    <div className="absolute top-4 right-4 text-blue-500">
                       <Check className="w-5 h-5" />
                     </div>
                   )}
@@ -512,23 +512,23 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
               onClick={() => setIncludeAccessories(!includeAccessories)}
               className={`p-6 rounded-2xl cursor-pointer transition-colors duration-200 relative flex items-center justify-between gap-4 ${
                 includeAccessories
-                  ? 'bg-amber-50 ring-2 ring-amber-500 border-transparent text-amber-900'
+                  ? 'bg-accent/5 ring-2 ring-accent border-transparent text-accent-dark'
                   : 'bg-white border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
               }`}
             >
               <div className="flex-1 pr-8">
                 <h4 className="font-bold text-lg mb-1">Premium Bundle Pack</h4>
-                <p className={`text-sm leading-relaxed ${includeAccessories ? 'text-amber-800/80' : 'text-gray-500'}`}>
+                <p className={`text-sm leading-relaxed ${includeAccessories ? 'text-blue-800/80' : 'text-gray-500'}`}>
                   Add 2 luxury Talalay natural rubber latex pillows & 1 Premium 100% Breathable Waterproof Mattress Protector.
                 </p>
               </div>
               <div className="shrink-0 flex flex-col items-end">
-                <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${includeAccessories ? 'bg-amber-100/50 border-amber-200 text-amber-800' : 'bg-white border-gray-200 text-gray-900'}`}>
+                <span className={`font-semibold text-sm px-3 py-1.5 rounded-lg border ${includeAccessories ? 'bg-blue-100/50 border-blue-200 text-blue-800' : 'bg-white border-gray-200 text-gray-900'}`}>
                   + ₹{includeAccessories ? { king: 5000, queen: 4000, double: 3000, single: 2500 }[size] : 0}
                 </span>
               </div>
               {includeAccessories && (
-                <div className="absolute top-4 right-4 text-amber-500">
+                <div className="absolute top-4 right-4 text-blue-500">
                   <Check className="w-5 h-5" />
                 </div>
               )}

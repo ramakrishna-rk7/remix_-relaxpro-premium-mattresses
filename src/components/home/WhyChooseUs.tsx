@@ -54,7 +54,7 @@ const features = [
     icon: <Award className="w-7 h-7" />,
     title: '10-Year Warranty',
     desc: 'Built to last a decade, guaranteed. Direct factory replacement policy.',
-    color: 'bg-amber-50 text-amber-600 border-amber-100',
+    color: 'bg-sky-50 text-sky-600 border-sky-100',
   },
   {
     icon: <Leaf className="w-7 h-7" />,

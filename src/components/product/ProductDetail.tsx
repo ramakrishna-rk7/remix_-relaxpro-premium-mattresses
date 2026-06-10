@@ -346,7 +346,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
               <button
                 onClick={handleAddToCart}
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-accent hover:bg-accent-dark text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
               >
                 <ShoppingCart className="w-5 h-5" />
                 <span>Add to Cart — Secure Checkout</span>

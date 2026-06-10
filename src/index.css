@@ -15,50 +15,50 @@
   --font-sans: 'DM Sans', 'Helvetica Neue', Arial, ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
 
-  /* NEW Premium Color Palette */
-  --color-primary: #1A2340;
-  --color-secondary: #F5EFE6;
-  --color-accent: #D4A853;
-  --color-accent-dark: #B8923F;
-  --color-accent-light: #E8C97A;
+  /* Brand Color Palette — derived from logo */
+  --color-primary: #1A1D1B;
+  --color-secondary: #E1DDD6;
+  --color-accent: #317FBA;
+  --color-accent-dark: #67B3F5;
+  --color-accent-light: #67B3F5;
 
-  --color-neutral-dark: #2D2D2D;
-  --color-neutral-light: #F9F6F1;
+  --color-neutral-dark: #696660;
+  --color-neutral-light: #E1DDD6;
   --color-success: #4CAF7D;
 
   /* Backward-compatible brand tokens */
-  --color-brand-50: #F9F6F1;
-  --color-brand-100: #F5EFE6;
-  --color-brand-200: #E8DFD0;
-  --color-brand-500: #D4A853;
-  --color-brand-600: #B8923F;
-  --color-brand-800: #3A4563;
-  --color-brand-950: #1A2340;
+  --color-brand-50: #F3F2EF;
+  --color-brand-100: #E1DDD6;
+  --color-brand-200: #C9C4BB;
+  --color-brand-500: #317FBA;
+  --color-brand-600: #67B3F5;
+  --color-brand-800: #1A1D1B;
+  --color-brand-950: #1A1D1B;
 
-  --color-luxury-gold: #D4A853;
-  --color-deep-charcoal: #1A2340;
+  --color-luxury-gold: #317FBA;
+  --color-deep-charcoal: #1A1D1B;
 
   /* Card Tokens */
   --radius-card: 16px;
-  --shadow-card: 0 8px 32px rgba(26, 35, 64, 0.10);
+  --shadow-card: 0 8px 32px rgba(26, 29, 27, 0.10);
 }
 
 /* ============================================
    CSS Custom Properties for Non-Tailwind Usage
    ============================================ */
 :root {
-  --color-primary: #1A2340;
-  --color-secondary: #F5EFE6;
-  --color-accent: #D4A853;
-  --color-accent-dark: #B8923F;
-  --color-neutral-dark: #2D2D2D;
-  --color-neutral-light: #F9F6F1;
+  --color-primary: #1A1D1B;
+  --color-secondary: #E1DDD6;
+  --color-accent: #317FBA;
+  --color-accent-dark: #67B3F5;
+  --color-neutral-dark: #696660;
+  --color-neutral-light: #E1DDD6;
   --color-success: #4CAF7D;
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', sans-serif;
   --font-accent: 'Poppins', sans-serif;
   --radius-card: 16px;
-  --shadow-card: 0 8px 32px rgba(26, 35, 64, 0.10);
+  --shadow-card: 0 8px 32px rgba(26, 29, 27, 0.10);
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -226,10 +226,10 @@
 /* Soft glow */
 @keyframes soft-glow {
   0%, 100% {
-    box-shadow: 0 4px 20px -2px rgba(212, 168, 83, 0.1), 0 2px 8px -1px rgba(212, 168, 83, 0.05);
+    box-shadow: 0 4px 20px -2px rgba(49, 127, 186, 0.1), 0 2px 8px -1px rgba(49, 127, 186, 0.05);
   }
   50% {
-    box-shadow: 0 12px 32px -2px rgba(212, 168, 83, 0.28), 0 4px 14px -1px rgba(212, 168, 83, 0.18);
+    box-shadow: 0 12px 32px -2px rgba(49, 127, 186, 0.28), 0 4px 14px -1px rgba(49, 127, 186, 0.18);
   }
 }
 .animate-glow-soft {
@@ -258,8 +258,8 @@
 
 /* Pulse glow for CTA */
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 168, 83, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(212, 168, 83, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(49, 127, 186, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(49, 127, 186, 0); }
 }
 .animate-pulse-glow {
   animation: pulse-glow 2.5s ease-in-out infinite;
@@ -382,7 +382,7 @@
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(26, 35, 64, 0.15);
+  box-shadow: 0 12px 40px rgba(26, 29, 27, 0.15);
 }
 
 /* Image zoom on hover */
@@ -404,7 +404,7 @@
 }
 .feature-card-glow:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.2), var(--shadow-card);
+  box-shadow: 0 0 0 3px rgba(49, 127, 186, 0.2), var(--shadow-card);
 }
 
 /* ============================================
@@ -519,8 +519,8 @@
 .header-scrolled {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
-  border-bottom-color: #E8DFD0;
-  box-shadow: 0 2px 20px rgba(26, 35, 64, 0.06);
+  border-bottom-color: #C9C4BB;
+  box-shadow: 0 2px 20px rgba(26, 29, 27, 0.06);
 }
 
 /* ============================================

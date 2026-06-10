@@ -145,7 +145,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                 <th key={p.slug} className="p-4 md:p-6 text-left border-l border-zinc-200 min-w-[180px]">
                   <div className="relative">
                     {p.badge && (
-                      <span className="inline-block text-[9px] font-bold tracking-wider font-mono text-amber-800 bg-amber-100 rounded px-1.5 py-0.5 mb-2 truncate max-w-full">
+                      <span className="inline-block text-[9px] font-bold tracking-wider font-mono text-blue-800 bg-blue-100 rounded px-1.5 py-0.5 mb-2 truncate max-w-full">
                         {p.badge}
                       </span>
                     )}
@@ -219,7 +219,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                       <span
                         key={idx}
                         className={`inline-block w-2.5 h-2.5 rounded-full ${
-                          idx < p.comfortRating ? 'bg-amber-500' : 'bg-gray-200'
+                          idx < p.comfortRating ? 'bg-accent' : 'bg-gray-200'
                         }`}
                       ></span>
                     ))}
@@ -388,8 +388,8 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
       </div>
 
       <div className="mt-8 flex items-start gap-3 bg-yellow-50/80 border border-yellow-200 p-4 rounded-xl max-w-2xl">
-        <Award className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-        <p className="text-xs text-amber-900 leading-relaxed font-sans">
+        <Award className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+        <p className="text-xs text-blue-900 leading-relaxed font-sans">
           <strong className="font-semibold">Buying Direct Tip:</strong> Comparing mattresses shows how RelaxPro saves you up to 40% vs. retail showroom brands. By cutting national distributor commissions, transport overhead, and retail rents, Suresh delivers luxury latex straight from natural sap units to your home.
         </p>
       </div>
