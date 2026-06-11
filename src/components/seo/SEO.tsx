@@ -16,7 +16,7 @@ export default function SEO({
   description,
   canonical,
   ogType = 'website',
-  ogImage = 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80',
+  ogImage = '/images/products/prakriti.webp',
   schema
 }: SEOProps) {
   const siteUrl = 'https://remix-relaxpro-matress.vercel.app';

@@ -68,7 +68,7 @@ export default function Header({ cartCount }: HeaderProps) {
             Telangana & AP's 1st Pure Latex Mattress Company • 100% Natural Latex
           </span>
           <span className="hidden md:inline-block text-white/40">•</span>
-          <span className="font-semibold text-white/80">📞 8977024494, 9642024494</span>
+          <span className="font-semibold text-white/80">📞 8686624494, 9642024494</span>
           <span className="hidden md:inline-block text-white/40">•</span>
           <span className="text-white/60 font-bold">📍Hyderabad 📍Rajahmundry 📍Bangalore</span>
         </div>

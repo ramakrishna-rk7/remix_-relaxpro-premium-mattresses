@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, X, Shield, Plus, Minus, FileText, ShoppingCart, Info, Award } from 'lucide-react';
+import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
 
@@ -362,16 +362,15 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
               {comparedProducts.map((p) => (
                 <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                   <div className="space-y-2">
-                    <button
-                      onClick={() => {
-                        onAddToCartDirect(p, activeSize, false);
-                        onNavigate('cart');
-                      }}
-                      className="w-full bg-brand-950 hover:bg-brand-800 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 cursor-pointer transition-all"
+                    <a
+                      href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${p.name} Mattress (${activeSize} size) from the Compare page. Please share pricing and delivery info.`)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg py-2.5 px-3 text-xs font-semibold font-display shadow-xs flex items-center justify-center gap-1 transition-all"
                     >
-                      <ShoppingCart className="w-3.5 h-3.5" />
-                      Add {activeSize} Now
-                    </button>
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      Enquire on WhatsApp
+                    </a>
                     <button
                       onClick={() => onNavigateToPdp(p.slug)}
                       className="w-full border border-zinc-200 hover:border-brand-500 bg-white hover:bg-zinc-50 rounded-lg py-2.5 px-3 text-xs font-semibold text-brand-950 flex items-center justify-center gap-1 cursor-pointer transition-all"

@@ -42,6 +42,7 @@ export interface Product {
     fabric450Gsm?: SizePrice;
   };
   image: string;
+  images: string[];
   tier: Tier;
   features: string[];
   metaTitle: string;

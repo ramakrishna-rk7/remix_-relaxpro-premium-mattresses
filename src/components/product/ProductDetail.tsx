@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Check, Shield, Award, HelpCircle, ShoppingCart, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail } from 'lucide-react';
+import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
-import SafeImage from '../ui/SafeImage';
+import ProductCarousel from './ProductCarousel';
 
 interface ProductDetailProps {
   product: Product;
@@ -54,7 +54,7 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
 
   const handleContactSuresh = () => {
     const message = `Hello Suresh, I am interested in purchasing the RelaxPro ${product.name} Mattress (${activeSize}). Could you please guide me on pricing, delivery timelines, and orthopedic support suitability?`;
-    window.open(`https://wa.me/918977024494?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/918686624494?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -80,21 +80,11 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         {/* Left: Product Images & Core Specs */}
         <div className="lg:col-span-7 space-y-10">
-          <div className="relative rounded-[2rem] overflow-hidden bg-neutral-light border border-brand-200/40 shadow-sm group">
-            {product.badge && (
-              <span className="absolute top-6 left-6 bg-primary/95 backdrop-blur-sm text-white font-accent text-[11px] tracking-widest uppercase font-bold px-4 py-2 rounded-full z-10 border border-white/10 shadow-lg">
-                {product.badge}
-              </span>
-            )}
-            <SafeImage
-              src={product.image}
-              alt={product.name}
-              className="w-full h-[400px] md:h-[550px] object-cover transition-transform duration-700 group-hover:scale-105"
-              referrerPolicy="no-referrer"
-            />
-            {/* Inner shadow overlay */}
-            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[2rem] pointer-events-none"></div>
-          </div>
+          <ProductCarousel
+            images={[product.image, ...product.images]}
+            alt={product.name}
+            badge={product.badge}
+          />
 
           {/* Core Spec Badges Section */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-brand-200/40 shadow-sm grid grid-cols-3 gap-6 text-center">
@@ -345,11 +335,11 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
               </div>
 
               <button
-                onClick={handleAddToCart}
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-accent hover:bg-accent-dark text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+                onClick={handleContactSuresh}
+                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
               >
-                <ShoppingCart className="w-5 h-5" />
-                <span>Add to Cart — Secure Checkout</span>
+                <MessageSquare className="w-5 h-5" />
+                <span>Enquire / Get Price on WhatsApp</span>
               </button>
             </div>
 

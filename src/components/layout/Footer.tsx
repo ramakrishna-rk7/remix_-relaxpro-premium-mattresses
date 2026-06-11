@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Shield, RefreshCcw, Truck, Facebook, Instagram, Youtube, ChevronDown } from 'lucide-react';
 import { PRODUCTS } from '../../data/products';
 import RelaxProLogo from '../ui/RelaxProLogo';
 
 export default function Footer() {
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [emailError, setEmailError] = useState(false);
 
   const luxuryModels = PRODUCTS.filter(p => p.tier === 'luxury');
   const premiumModels = PRODUCTS.filter(p => p.tier === 'premium');
@@ -16,20 +13,6 @@ export default function Footer() {
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
-  };
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      setEmailError(true);
-      setTimeout(() => setEmailError(false), 600);
-      return;
-    }
-    const subject = encodeURIComponent('RelaxPro newsletter subscription');
-    const body = encodeURIComponent(`Please add me to the RelaxPro newsletter.\n\nEmail: ${email}`);
-    setSubscribed(true);
-    window.location.href = `mailto:relaxpro2022@gmail.com?subject=${subject}&body=${body}`;
-    setEmail('');
   };
 
   const quickLinks = [
@@ -136,7 +119,7 @@ export default function Footer() {
                 <div className="flex gap-2 items-start">
                   <Phone className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
                   <div>
-                    <a href="tel:+918977024494" className="hover:text-white block font-semibold">+91 89770 24494</a>
+                    <a href="tel:+918686624494" className="hover:text-white block font-semibold">+91 86866 24494</a>
                     <a href="tel:+917207424494" className="hover:text-white block">+91 72074 24494</a>
                   </div>
                 </div>
@@ -179,48 +162,14 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Col 4: Newsletter */}
+          {/* Col 4: Factory Address */}
           <div className="lg:col-span-4 space-y-4">
             <h4 className="font-heading font-bold text-white text-xs uppercase tracking-widest">
-              Stay in the Loop
+              Factory Headquarters
             </h4>
-            <p className="text-white/40 text-xs font-body leading-relaxed">
-              Sleep tips & exclusive deals, delivered monthly. No spam, ever.
-            </p>
-
-            {subscribed ? (
-              <div className="newsletter-success flex items-center gap-2 bg-success/20 text-success px-4 py-3 rounded-xl text-xs font-semibold">
-                <Check className="w-4 h-4" />
-                Opening your email client…
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-0">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className={`flex-1 bg-white/10 border border-white/15 text-white placeholder:text-white/30 rounded-l-xl px-4 py-3 text-xs font-body focus:outline-none focus:border-accent transition-colors ${
-                    emailError ? 'animate-[shake_0.5s_ease]' : ''
-                  }`}
-                  style={emailError ? { animation: 'shake 0.5s ease' } : {}}
-                />
-                <button
-                  type="submit"
-                  className="btn-primary bg-accent hover:bg-accent-dark text-primary px-5 py-3 rounded-r-xl text-xs font-bold font-accent uppercase tracking-wider cursor-pointer whitespace-nowrap"
-                >
-                  Subscribe
-                </button>
-              </form>
-            )}
-
-            {/* Factory Address */}
-            <div className="flex gap-2 items-start text-xs mt-4 pt-4 border-t border-white/10">
+            <div className="flex gap-2 items-start text-xs">
               <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-              <div>
-                <span className="font-accent text-[10px] text-white/30 block uppercase tracking-wider font-bold">Factory Headquarters</span>
-                <p className="text-white/50 mt-0.5">Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana</p>
-              </div>
+              <p className="text-white/50">Jeedimetla Ind. Area Phase 3, Hyderabad, Telangana</p>
             </div>
           </div>
         </div>
@@ -240,7 +189,7 @@ export default function Footer() {
             <Link to="/locations" className="hover:text-white/60 transition-colors uppercase tracking-widest font-accent text-[10px] cursor-pointer">
               Showrooms
             </Link>
-            <span className="text-white/20">Made with ❤️ for better sleep</span>
+
           </div>
         </div>
       </div>

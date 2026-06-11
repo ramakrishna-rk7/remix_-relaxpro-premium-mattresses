@@ -18,7 +18,8 @@ import {
   ShoppingCart, 
   Sparkle,
   BadgeAlert,
-  ArrowRight
+  ArrowRight,
+  Leaf
 } from 'lucide-react';
 
 // Subcomponents
@@ -174,8 +175,8 @@ function AppContent() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "RelaxPro Premium Mattresses",
-    "image": "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
-    "telephone": "+918977024494",
+    "image": "/images/products/prakriti.webp",
+    "telephone": "+918686624494",
     "email": "relaxpro2022@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -300,9 +301,15 @@ function AppContent() {
                             <button onClick={(e) => { e.stopPropagation(); handleNavigateToPdp(item.slug); }} className="btn-primary py-2.5 px-3 rounded-xl border border-brand-200 hover:border-accent bg-white font-accent font-semibold text-xs text-center cursor-pointer text-primary transition-all">
                               View Details
                             </button>
-                            <button onClick={(e) => { e.stopPropagation(); handleAddToCartDirect(item, 'king', false); handlePageNavigation('cart'); }} className="btn-primary py-2.5 px-3 rounded-xl bg-primary hover:bg-brand-800 active:bg-black text-white text-xs font-semibold text-center cursor-pointer transition-all">
-                              Add to Cart
-                            </button>
+                            <a
+                              href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello Suresh, I am interested in the RelaxPro ${item.name} Mattress (King size). Please share pricing and delivery info.`)}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="btn-primary py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold text-center transition-all"
+                            >
+                              <MessageSquare className="w-3 h-3" />
+                              Enquire on WA
+                            </a>
                           </div>
                         </>
                       );
@@ -384,6 +391,127 @@ function AppContent() {
                       Browse Comfort Series →
                     </button>
                   </div>
+                </div>
+              </section>
+
+              {/* ===== GOLS CERTIFICATION BADGE ===== */}
+              <section className="bg-primary py-16 md:py-20 px-4 md:px-8 border-y border-white/10">
+                <div className="max-w-5xl mx-auto text-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/20 border-2 border-accent/30 mb-6">
+                    <Leaf className="w-10 h-10 text-accent" />
+                  </div>
+                  <span className="text-[10px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 border border-accent/20 px-4 py-1.5 rounded-full inline-block mb-4">
+                    GOLS Certified Organic
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-4">
+                    Pure Natural Latex —{' '}
+                    <span className="text-accent">Zero Compromise</span>
+                  </h2>
+                  <p className="text-white/50 font-body text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+                    All RelaxPro latex mattresses use GOLS (Global Organic Latex Standard) certified natural rubber
+                    from Kerala plantations. No synthetic latex, no chemical fillers — just pure Dunlop sap
+                    transformed into your healthiest sleep surface.
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                    {[
+                      { label: 'GOLS Certified', desc: 'Global Organic Latex' },
+                      { label: 'Oeko-Tex', desc: 'Skin-Safe Fabrics' },
+                      { label: 'FSC Certified', desc: 'Sustainable Harvest' },
+                      { label: 'Zero VOC', desc: 'Chemical Free' },
+                    ].map((cert, idx) => (
+                      <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
+                        <div className="text-accent font-heading font-bold text-lg">✓</div>
+                        <div className="text-white font-heading font-bold text-sm mt-1">{cert.label}</div>
+                        <div className="text-white/40 text-[10px] font-body mt-0.5">{cert.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* ===== WHICH MATTRESS IS RIGHT FOR ME? ===== */}
+              <section className="py-16 md:py-24 px-4 md:px-8 bg-white">
+                <div className="max-w-5xl mx-auto">
+                  <div className="text-center max-w-2xl mx-auto mb-10">
+                    <span className="text-[11px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-4">
+                      Find Your Match
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary leading-tight">
+                      Which Mattress Is Right for You?
+                    </h2>
+                    <p className="text-neutral-dark/50 text-sm mt-3 font-body leading-relaxed">
+                      Not sure where to start? Pick your sleep style and we'll recommend the perfect model.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+                    {[
+                      {
+                        icon: <Sparkles className="w-6 h-6" />,
+                        title: 'Side Sleeper',
+                        desc: 'Need pressure relief on shoulders & hips. Try our plush organic latex or soft-medium hybrids.',
+                        tier: 'luxury',
+                        slug: 'nirvana'
+                      },
+                      {
+                        icon: <Shield className="w-6 h-6" />,
+                        title: 'Back & Orthopedic',
+                        desc: 'Require spine alignment & firm support. Our medium-firm orthopedic builds are doctor-recommended.',
+                        tier: 'premium',
+                        slug: 'arogya'
+                      },
+                      {
+                        icon: <Award className="w-6 h-6" />,
+                        title: 'Stomach Sleeper',
+                        desc: 'Need firm even surface to prevent hip sinking. Our firm and ultra-firm options keep you aligned.',
+                        tier: 'comfort',
+                        slug: 'ayushrest'
+                      },
+                    ].map((option, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => { setSelectedTier(option.tier as 'all' | 'luxury' | 'premium' | 'comfort'); handlePageNavigation('catalog'); }}
+                        className="group bg-neutral-light hover:bg-accent/5 border border-brand-200/50 hover:border-accent/40 rounded-2xl p-6 md:p-8 text-left transition-all cursor-pointer"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                          {option.icon}
+                        </div>
+                        <h3 className="font-heading font-bold text-lg text-primary mb-2">{option.title}</h3>
+                        <p className="text-neutral-dark/60 text-sm font-body leading-relaxed">{option.desc}</p>
+                        <span className="inline-flex items-center gap-1 text-accent text-xs font-accent font-bold mt-4 group-hover:gap-2 transition-all">
+                          View {option.tier} models <ChevronRight className="w-3 h-3" />
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* ===== GOOGLE MAPS ===== */}
+              <section className="py-12 md:py-16 px-4 md:px-8 bg-neutral-light">
+                <div className="max-w-6xl mx-auto">
+                  <div className="text-center mb-8">
+                    <span className="text-[11px] tracking-widest font-accent text-accent uppercase font-bold bg-accent/10 px-4 py-1.5 rounded-full inline-block mb-3">
+                      Visit Our Factory Showroom
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary">
+                      Find Us in Hyderabad
+                    </h2>
+                  </div>
+                  <div className="rounded-2xl overflow-hidden border border-brand-200/40 shadow-sm">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.640936998565!2d78.463397!3d17.504569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDMwJzE2LjQiTiA3OMKwMjcnNDguMiJF!5e0!3m2!1sen!2sin!4v1"
+                      width="100%"
+                      height="400"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="RelaxPro Hyderabad Factory Showroom"
+                    />
+                  </div>
+                  <p className="text-center text-neutral-dark/50 text-xs mt-4 font-body">
+                    Jeedimetla Industrial Area, Phase 3, Near Prasad Labs, Hyderabad — Open 10 AM to 9 PM Daily
+                  </p>
                 </div>
               </section>
 
@@ -492,7 +620,7 @@ function AppContent() {
                           <div className="text-zinc-900 font-mono"><strong className="text-zinc-500 font-sans font-medium">Contact:</strong> {loc.phones.join(', ')}</div>
                         </div>
                         <a
-                          href={`https://wa.me/918977024494?text=${encodeURIComponent(`Hello, I would like to visit the RelaxPro ${loc.city} Experience Showroom. Can you please guide me on directions?`)}`}
+                          href={`https://wa.me/918686624494?text=${encodeURIComponent(`Hello, I would like to visit the RelaxPro ${loc.city} Experience Showroom. Can you please guide me on directions?`)}`}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 text-xs text-brand-900 font-semibold font-mono underline hover:text-brand-950 pt-2 cursor-pointer"
@@ -673,7 +801,7 @@ function AppContent() {
                       <div className="pt-4 border-t border-zinc-100 flex flex-col gap-2">
                         <button
                           onClick={() => {
-                            window.open(`https://wa.me/918977024494?text=${encodeURIComponent(`Hi Suresh, I would like directions, phone triggers and appointment schedule for the RelaxPro ${loc.city} Mattress Outlet.`)}`, '_blank');
+                            window.open(`https://wa.me/918686624494?text=${encodeURIComponent(`Hi Suresh, I would like directions, phone triggers and appointment schedule for the RelaxPro ${loc.city} Mattress Outlet.`)}`, '_blank');
                           }}
                           className="w-full bg-brand-950 hover:bg-brand-800 text-white rounded-lg py-2.5 text-xs font-semibold uppercase font-display tracking-wider cursor-pointer text-center"
                         >
@@ -804,7 +932,7 @@ function AppContent() {
                       onClick={() => {
                         const orderStrObj = orderReceipt.cart.map((item: any) => `- ${item.name} [Size: ${item.size} x ${item.quantity}]`).join('%0A');
                         const text = `Hello Suresh! I have completed order booking ${orderReceipt.orderId} on the website. Final Amount: ₹${orderReceipt.grandTotal.toLocaleString('en-IN')}. items:%0A${orderStrObj}%0A%0AConisgnee Details: Name: ${orderReceipt.name}, phone: ${orderReceipt.phone}, address: ${orderReceipt.address}. Please verify and dispatch!`;
-                        window.open(`https://wa.me/918977024494?text=${encodeURIComponent(text)}`, '_blank');
+                        window.open(`https://wa.me/918686624494?text=${encodeURIComponent(text)}`, '_blank');
                       }}
                       className="w-full bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white rounded-xl py-3 text-xs font-semibold uppercase tracking-wider font-display flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/15 cursor-pointer"
                     >

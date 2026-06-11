@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, ShoppingCart, Info, ChevronRight, Sparkles, AlertCircle } from 'lucide-react';
+import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquare, Info, ChevronRight, Sparkles, AlertCircle } from 'lucide-react';
 import { Product, MattressSize, Tier } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import ShineBorder from '../ui/ShineBorder';
@@ -42,6 +42,35 @@ export default function ProductList({
   // Helper check for latex in layers
   const hasLatex = (product: Product) => {
     return product.layers.some(l => l.material === 'latex' || l.material === 'latex_rebonded');
+  };
+
+  // Firmness badge config
+  const getFirmnessBadge = (level: string): { label: string; color: string } => {
+    const softLevels = ['plush', 'soft', 'soft-medium', 'medium-soft'];
+    const mediumLevels = ['medium', 'medium-firm', 'medium-plush'];
+    if (softLevels.includes(level)) return { label: 'Soft', color: 'bg-emerald-500/15 text-emerald-600 border-emerald-200' };
+    if (mediumLevels.includes(level)) return { label: 'Medium', color: 'bg-blue-500/15 text-blue-600 border-blue-200' };
+    return { label: 'Firm', color: 'bg-orange-500/15 text-orange-600 border-orange-200' };
+  };
+
+  // Price range helper
+  const getPriceRange = (product: Product): { min: number; max: number } => {
+    const sizes: MattressSize[] = ['single', 'double', 'queen', 'king'];
+    let prices: number[] = [];
+    if (product.pricingModel === 'with_without_accessories') {
+      const wo = product.pricing.withoutAccessories || {};
+      prices = sizes.map(s => wo[s] || 0);
+    } else {
+      const f3 = product.pricing.fabric300Gsm || {};
+      prices = sizes.map(s => f3[s] || 0);
+    }
+    return { min: Math.min(...prices), max: Math.max(...prices) };
+  };
+
+  // WhatsApp Enquire handler
+  const handleWhatsAppEnquire = (product: Product, size: MattressSize) => {
+    const msg = `Hello Suresh, I am interested in the RelaxPro ${product.name} Mattress (${size} size). Could you please guide me on pricing, delivery and orthopedic suitability?`;
+    window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   // Helper to extract baseline starting price
@@ -263,9 +292,14 @@ export default function ProductList({
                         
                         {/* Comfort label */}
                         <div className="text-right shrink-0">
-                          <span className="inline-block text-[10px] font-bold tracking-widest font-mono uppercase bg-neutral-light border border-brand-200/50 text-primary px-2.5 py-1 rounded-md capitalize">
-                            {p.comfortLevel}
-                          </span>
+                          {(() => {
+                            const badge = getFirmnessBadge(p.comfortLevel);
+                            return (
+                              <span className={`inline-block text-[10px] font-bold tracking-widest font-mono uppercase px-2.5 py-1 rounded-md border ${badge.color}`}>
+                                {badge.label}
+                              </span>
+                            );
+                          })()}
                           <div className="flex items-center justify-end gap-1 mt-2">
                             {Array.from({ length: 5 }).map((_, i) => (
                               <span
@@ -339,20 +373,23 @@ export default function ProductList({
                       {/* Price indicator */}
                       <div className="flex justify-between items-end p-4 rounded-xl border border-brand-200/50 bg-white shadow-sm mt-2">
                         <div className="flex flex-col">
-                          <span className="text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-1">Direct-to-Consumer</span>
+                          <span className="text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-1">Starting From</span>
                           <div className="flex items-baseline gap-2">
                             <span className="text-2xl font-bold font-heading text-primary">
                               ₹{price.toLocaleString('en-IN')}
                             </span>
-                            <span className="text-sm font-body text-neutral-dark/40 line-through">
-                              ₹{Math.round(price * 1.4).toLocaleString('en-IN')}
+                            <span className="text-sm font-body text-neutral-dark/40">
+                              Single
                             </span>
                           </div>
+                          <span className="text-[10px] text-neutral-dark/50 font-mono mt-0.5">
+                            Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')} (King)
+                          </span>
                         </div>
                         <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[110px] leading-tight">
                           {p.pricingModel === 'with_without_accessories' ? 
-                            '*Excludes pillow set.' : 
-                            '*Base 300 GSM model.'}
+                            'Tax incl. No middleman' : 
+                            'Base 300 GSM model.'}
                         </div>
                       </div>
                     </div>
@@ -369,12 +406,11 @@ export default function ProductList({
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        onAddToCartDirect(p, activeSize, false);
-                        onNavigate('cart');
+                        handleWhatsAppEnquire(p, activeSize);
                       }}
-                      className="btn-primary py-3 px-4 rounded-xl bg-primary text-white font-accent font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md focus:outline-none focus:ring-4 focus:ring-primary/20"
+                      className="btn-primary py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-accent font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-200"
                     >
-                      <ShoppingCart className="w-4 h-4 text-white/80" /> Add to Cart
+                      <MessageSquare className="w-4 h-4 text-white/80" /> Enquire / Get Price
                     </button>
                   </div>
                 </>

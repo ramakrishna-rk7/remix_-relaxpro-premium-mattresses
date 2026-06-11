@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkle, ChevronRight, ChevronLeft, ChevronDown, Home, Users, Truck, Shield, Award } from 'lucide-react';
+import { Sparkle, ChevronRight, ChevronLeft, ChevronDown, Home, Users, Truck, Shield, Award, MessageSquare } from 'lucide-react';
 import NumberTicker from '../ui/NumberTicker';
 import BlurFade from '../ui/BlurFade';
 
@@ -70,7 +70,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
 
                 {/* Main Headline */}
                 <BlurFade delay={0.2}>
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-heading font-bold tracking-tight leading-[1.1]">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-heading font-bold tracking-[-0.03em] md:tracking-[-0.05em] leading-[1.1]">
                     <span className="text-white block" style={{ animation: 'wordSlideUp 0.6s ease forwards', animationDelay: '0.1s', opacity: 0 }}>Sleep Like</span>
                     <span className="text-white block" style={{ animation: 'wordSlideUp 0.6s ease forwards', animationDelay: '0.25s', opacity: 0 }}>You've <span className="text-accent italic">Never</span></span>
                     <span className="text-white block" style={{ animation: 'wordSlideUp 0.6s ease forwards', animationDelay: '0.4s', opacity: 0 }}>Slept <span className="text-accent italic">Before.</span></span>
@@ -94,6 +94,15 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
                       Shop Mattresses
                       <ChevronRight className="w-4 h-4" />
                     </button>
+                    <a
+                      href="https://wa.me/918686624494?text=Hello%20Suresh%2C%20I%20want%20to%20enquire%20about%20RelaxPro%20premium%20mattresses.%20Please%20guide%20me."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="border border-accent/50 hover:bg-accent hover:text-primary text-accent py-4 px-8 sm:px-10 rounded-full text-xs font-bold font-accent uppercase tracking-wider cursor-pointer transition-all flex items-center justify-center gap-2"
+                    >
+                      <MessageSquare className="w-4 h-4" />
+                      Enquire on WhatsApp
+                    </a>
                     <button
                       onClick={() => onNavigate('builder')}
                       className="border border-white/25 hover:border-white/50 hover:bg-white/10 text-white py-4 px-8 sm:px-10 rounded-full text-xs font-bold font-accent uppercase tracking-wider cursor-pointer transition-all flex items-center justify-center gap-2"
@@ -137,7 +146,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
                   </div>
                   <div className="img-zoom rounded-xl overflow-hidden mb-4">
                     <img
-                      src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80"
+                      src="/images/products/prakriti.webp"
                       alt="Nirvana 8-inch dual zone natural latex mattress in a bedroom setting"
                       className="w-full h-48 md:h-56 object-cover rounded-xl"
                       loading="eager"

@@ -31,7 +31,7 @@ function AnimatedCounter({ target, suffix = '', prefix = '' }: { target: number;
   }, [isVisible, target]);
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold font-heading text-primary">
+    <div ref={ref} className="text-3xl md:text-4xl font-bold font-heading text-white">
       {prefix}{count.toLocaleString('en-IN')}{suffix}
     </div>
   );

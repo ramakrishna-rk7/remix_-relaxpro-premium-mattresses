@@ -57,7 +57,7 @@ export default function ConsultationForm() {
   const handleLaunchWhatsApp = () => {
     const complaintText = painLevel !== 'none' ? `My back pain level is ${painLevel}/5. Notes: ${customNotes}` : '';
     const text = `Hello Suresh, I am requesting an orthopedic mattress consultation. Name: ${name}. Phone: ${phone}. ${complaintText}`;
-    window.location.href = `https://wa.me/918977024494?text=${encodeURIComponent(text)}`;
+    window.location.href = `https://wa.me/918686624494?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -104,7 +104,7 @@ export default function ConsultationForm() {
                 maxLength={10}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="e.g. 8977024494"
+                placeholder="e.g. 8686624494"
                 className="w-full px-4 py-3.5 rounded-2xl border border-brand-200/60 text-sm focus:outline-hidden focus:border-accent focus:ring-4 focus:ring-accent/10 bg-neutral-light/50 text-primary transition-all font-body placeholder:text-neutral-dark/40"
               />
             </div>
