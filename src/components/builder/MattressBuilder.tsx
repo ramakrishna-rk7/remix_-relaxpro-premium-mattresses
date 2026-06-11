@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Ruler, Layers, Sparkles, Check, MessageSquare, Shirt, Bed,
-  ChevronDown, Shield, Truck, Gift
+  ChevronDown, Shield, Truck, Gift, ShoppingCart
 } from 'lucide-react';
 import { MattressSize, CartItem } from '../../types';
 
@@ -159,6 +159,44 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
   }, [size, selectedBase, selectedTransition, selectedTop, selectedFabric, includeAccessories]);
 
   const totalThickness = selectedBase.thickness + selectedTransition.thickness + selectedTop.thickness;
+
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const buildCartItem = (): CartItem => {
+    const layers = [
+      selectedBase.name,
+      ...(selectedTransition.thickness > 0 ? [selectedTransition.name] : []),
+      ...(selectedTop.thickness > 0 ? [selectedTop.name] : [])
+    ];
+    return {
+      id: `custom-${Date.now()}`,
+      slug: 'custom-build',
+      name: `Custom ${size} Mattress (${layers.join(' + ')})`,
+      size,
+      price: priceBreakdown.total,
+      quantity: 1,
+      includeAccessories,
+      fabricOption: selectedFabric.name,
+      image: 'https://images.unsplash.com/photo-1631549916768-4119b812b1f0?w=800&q=80',
+      type: 'custom',
+      customLayers: [
+        { material: selectedBase.name, thickness: selectedBase.thickness },
+        ...(selectedTransition.thickness > 0 ? [{ material: selectedTransition.name, thickness: selectedTransition.thickness }] : []),
+        ...(selectedTop.thickness > 0 ? [{ material: selectedTop.name, thickness: selectedTop.thickness }] : []),
+      ]
+    };
+  };
+
+  const handleAddToCart = () => {
+    onAddToCart(buildCartItem());
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 1500);
+  };
+
+  const handleBuyNow = () => {
+    onAddToCart(buildCartItem());
+    onNavigate('cart');
+  };
 
   const handleWhatsAppEnquire = () => {
     const layers = [
@@ -326,15 +364,34 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   <span className="text-[11px] text-blue-900/70 leading-relaxed">10-year warranty • 100-night trial • Certified materials</span>
                 </div>
 
-                <motion.button
-                  onClick={handleWhatsAppEnquire}
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-accent hover:bg-[#2569A0] text-white py-4 px-6 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-accent/20 hover:shadow-accent/30 flex items-center justify-center gap-2.5 cursor-pointer"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
-                </motion.button>
+                <div className="flex flex-col gap-2">
+                  <div className="grid grid-cols-2 gap-2">
+                    <motion.button
+                      onClick={handleAddToCart}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full bg-primary hover:bg-neutral-dark text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      <span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+                    </motion.button>
+                    <motion.button
+                      onClick={handleBuyNow}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full bg-accent hover:bg-[#2569A0] text-white py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Buy Now</span>
+                    </motion.button>
+                  </div>
+                  <button
+                    onClick={handleWhatsAppEnquire}
+                    className="w-full py-3 px-4 rounded-xl border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-semibold text-xs tracking-wide transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Enquire on WhatsApp — ₹{priceBreakdown.total.toLocaleString('en-IN')}</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquare, Info, ChevronRight, Sparkles, AlertCircle } from 'lucide-react';
+import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquare, Info, ChevronRight, Sparkles, AlertCircle, ShoppingCart } from 'lucide-react';
 import { Product, MattressSize, Tier } from '../../types';
 import { PRODUCTS } from '../../data/products';
 import ShineBorder from '../ui/ShineBorder';
@@ -67,10 +67,30 @@ export default function ProductList({
     return { min: Math.min(...prices), max: Math.max(...prices) };
   };
 
+  // Track which products were just added to cart (for visual feedback)
+  const [justAdded, setJustAdded] = useState<Set<string>>(new Set());
+
   // WhatsApp Enquire handler
   const handleWhatsAppEnquire = (product: Product, size: MattressSize) => {
     const msg = `Hello Suresh, I am interested in the RelaxPro ${product.name} Mattress (${size} size). Could you please guide me on pricing, delivery and orthopedic suitability?`;
     window.open(`https://wa.me/918686624494?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  const handleAddToCart = (product: Product, size: MattressSize) => {
+    onAddToCartDirect(product, size, true);
+    setJustAdded(prev => new Set(prev).add(product.slug));
+    setTimeout(() => {
+      setJustAdded(prev => {
+        const next = new Set(prev);
+        next.delete(product.slug);
+        return next;
+      });
+    }, 1500);
+  };
+
+  const handleBuyNow = (product: Product, size: MattressSize) => {
+    onAddToCartDirect(product, size, true);
+    onNavigate('cart');
   };
 
   // Helper to extract baseline starting price
@@ -396,21 +416,25 @@ export default function ProductList({
                   </div>
 
                   {/* Actions buttons */}
-                  <div className="p-5 bg-white border-t border-brand-200/40 grid grid-cols-2 gap-3 text-xs rounded-b-2xl">
+                  <div className="p-5 bg-white border-t border-brand-200/40 flex flex-wrap gap-2 text-xs rounded-b-2xl">
                     <button
                       onClick={(e) => { e.stopPropagation(); onNavigateToPdp(p.slug); }}
-                      className="py-3 px-4 rounded-xl border-2 border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-2 cursor-pointer transition-all focus:outline-none focus:ring-4 focus:ring-accent/10"
+                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl border-2 border-neutral-light hover:border-accent bg-white hover:bg-accent/5 font-accent font-bold text-primary flex items-center justify-center gap-1.5 cursor-pointer transition-all focus:outline-none focus:ring-4 focus:ring-accent/10"
                     >
-                      <Info className="w-4 h-4 text-accent" /> View Details
+                      <Info className="w-3.5 h-3.5 text-accent" /> Details
                     </button>
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleWhatsAppEnquire(p, activeSize);
-                      }}
-                      className="btn-primary py-3 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-accent font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md focus:outline-none focus:ring-4 focus:ring-emerald-200"
+                      onClick={(e) => { e.stopPropagation(); handleAddToCart(p, activeSize); }}
+                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl bg-primary hover:bg-neutral-dark text-white font-accent font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-4 focus:ring-primary/20"
                     >
-                      <MessageSquare className="w-4 h-4 text-white/80" /> Enquire / Get Price
+                      <ShoppingCart className="w-3.5 h-3.5 text-white/80" />
+                      {justAdded.has(p.slug) ? 'Added!' : 'Add to Cart'}
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleBuyNow(p, activeSize); }}
+                      className="flex-1 min-w-[80px] py-3 px-3 rounded-xl bg-accent hover:bg-[#2569A0] text-white font-accent font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-all focus:outline-none focus:ring-4 focus:ring-accent/20"
+                    >
+                      Buy Now
                     </button>
                   </div>
                 </>

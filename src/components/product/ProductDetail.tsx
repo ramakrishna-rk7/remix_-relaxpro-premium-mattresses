@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail } from 'lucide-react';
+import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
 import ProductCarousel from './ProductCarousel';
 
@@ -42,7 +42,20 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
     }
   }, [product, activeSize, includeAccessories, selectedFabric]);
 
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const handleAddToCart = () => {
+    onAddToCartDirect(
+      product,
+      activeSize,
+      product.pricingModel === 'with_without_accessories' ? includeAccessories : false,
+      product.pricingModel === 'fabric_options' ? selectedFabric : undefined
+    );
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 1500);
+  };
+
+  const handleBuyNow = () => {
     onAddToCartDirect(
       product,
       activeSize,
@@ -334,13 +347,30 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
                 <span>Tax Included &bull; Free Shipping</span>
               </div>
 
-              <button
-                onClick={handleContactSuresh}
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
-              >
-                <MessageSquare className="w-5 h-5" />
-                <span>Enquire / Get Price on WhatsApp</span>
-              </button>
+              <div className="flex flex-col gap-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={handleAddToCart}
+                    className="flex items-center justify-center gap-2 py-3.5 px-4 bg-primary hover:bg-neutral-dark text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+                  >
+                    <ShoppingCart className="w-5 h-5" />
+                    <span>{addedToCart ? 'Added!' : 'Add to Cart'}</span>
+                  </button>
+                  <button
+                    onClick={handleBuyNow}
+                    className="flex items-center justify-center gap-2 py-3.5 px-4 bg-accent hover:bg-[#2569A0] text-white font-medium rounded-xl transition-colors duration-200 shadow-sm cursor-pointer"
+                  >
+                    <span>Buy Now</span>
+                  </button>
+                </div>
+                <button
+                  onClick={handleContactSuresh}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 font-medium rounded-xl transition-colors duration-200 cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span className="text-sm">Enquire on WhatsApp</span>
+                </button>
+              </div>
             </div>
 
             {/* Ask Suresh / Personal Consultation CTA */}
