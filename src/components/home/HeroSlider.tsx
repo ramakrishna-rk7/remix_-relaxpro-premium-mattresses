@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import { Sparkle, ChevronRight, ChevronLeft, ChevronDown, Home, Users, Truck, Shield, Award, MessageSquare } from 'lucide-react';
 import NumberTicker from '../ui/NumberTicker';
 import BlurFade from '../ui/BlurFade';
@@ -166,7 +167,7 @@ export default function HeroSlider({ onNavigate, onNavigateToPdp }: HeroSliderPr
                       <span className="text-[9px] text-white/30 block uppercase font-accent tracking-wider font-bold">
                         Factory Direct
                       </span>
-                      <span className="text-xl font-bold text-white font-body">₹24,500</span>
+                      <span className="text-xl font-bold text-white font-body"><PriceText>₹24,500</PriceText></span>
                     </div>
                     <button
                       onClick={(e) => {

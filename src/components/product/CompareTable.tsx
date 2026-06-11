@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import { Check, X, Shield, Plus, Minus, FileText, MessageSquare, Info, Award } from 'lucide-react';
 import { Product, MattressSize } from '../../types';
 import { PRODUCTS } from '../../data/products';
@@ -192,7 +193,7 @@ export default function CompareTable({ onAddToCartDirect, onNavigateToPdp, onNav
                   <td key={p.slug} className="p-4 md:p-6 border-l border-zinc-200">
                     <div className="text-md font-mono text-zinc-500 block uppercase tracking-wider">{activeSize} price</div>
                     <div className="text-xl font-bold font-display text-brand-950 mt-1">
-                      ₹{price.toLocaleString('en-IN')}
+                      <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                     </div>
                     {p.pricingModel === 'with_without_accessories' && (
                       <span className="text-[10px] text-emerald-800 font-mono bg-emerald-100/80 px-1.5 py-0.5 rounded mt-1.5 inline-block">

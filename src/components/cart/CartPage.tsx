@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import { Trash2, Plus, Minus, ShoppingBag, ChevronRight, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { CartItem, OrderReceipt } from '../../types';
 import { submitLead } from '../../utils/googleSheets';
@@ -325,7 +326,7 @@ export default function CartPage({
                     
                     <div className="text-right flex flex-col items-end">
                       <span className="font-mono text-sm font-bold text-primary block">
-                        ₹{(item.price * item.quantity).toLocaleString('en-IN')}
+                        <PriceText>₹{(item.price * item.quantity).toLocaleString('en-IN')}</PriceText>
                       </span>
                       
                       {/* Responsive adjustment controls inline */}
@@ -358,7 +359,7 @@ export default function CartPage({
             <div className="pt-6 border-t border-brand-200/30 space-y-3.5 text-sm font-body text-neutral-dark/70">
               <div className="flex justify-between items-center">
                 <span>Subtotal</span>
-                <span className="font-mono font-bold text-primary">₹{subtotal.toLocaleString('en-IN')}</span>
+                <span className="font-mono font-bold text-primary"><PriceText>₹{subtotal.toLocaleString('en-IN')}</PriceText></span>
               </div>
               <div className="flex justify-between items-center">
                 <span>Delivery (Kerala to your door)</span>
@@ -372,7 +373,7 @@ export default function CartPage({
             <div className="pt-6 border-t border-brand-200/30 flex justify-between items-end">
               <span className="text-primary font-heading font-bold text-lg">Total</span>
               <span className="text-3xl font-bold font-heading text-primary">
-                ₹{grandTotal.toLocaleString('en-IN')}
+                <PriceText>₹{grandTotal.toLocaleString('en-IN')}</PriceText>
               </span>
             </div>
 

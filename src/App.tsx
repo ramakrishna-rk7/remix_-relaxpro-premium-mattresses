@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import PriceText from './components/ui/PriceText';
 import { 
   Shield, 
   MapPin, 
@@ -289,9 +290,9 @@ function AppContent() {
                               <p className="text-xs text-neutral-dark/50 mt-1 leading-relaxed font-body line-clamp-2">{item.keyBenefit}</p>
                               <div className="mt-4 pt-3 border-t border-brand-200/40 flex items-center gap-3">
                                 <span className="text-lg font-bold text-primary font-body">
-                                  ₹{item.pricingModel === 'with_without_accessories'
+                                  <PriceText>₹{item.pricingModel === 'with_without_accessories'
                                     ? item.pricing.withoutAccessories?.king?.toLocaleString('en-IN')
-                                    : item.pricing.fabric300Gsm?.king?.toLocaleString('en-IN')}
+                                    : item.pricing.fabric300Gsm?.king?.toLocaleString('en-IN')}</PriceText>
                                 </span>
                                 <span className="text-[10px] text-neutral-dark/40 font-accent">King Size</span>
                               </div>
@@ -917,7 +918,7 @@ function AppContent() {
                       <div>
                         <span className="text-[10px] font-mono text-zinc-400 block">TOTAL GRAND COD BALANCE DUE AT DOORSTEP</span>
                         <span className="text-base font-bold font-display text-brand-950">
-                          ₹{orderReceipt.grandTotal.toLocaleString('en-IN')}
+                          <PriceText>₹{orderReceipt.grandTotal.toLocaleString('en-IN')}</PriceText>
                         </span>
                       </div>
                     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import {
   Ruler, Layers, Sparkles, Check, MessageSquare, Shirt, Bed,
   ChevronDown, Shield, Truck, Gift, ShoppingCart
@@ -316,28 +317,28 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
               <div className="mt-5 space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
                   <span>Foundation</span>
-                  <span className="font-semibold text-primary">₹{priceBreakdown.base.toLocaleString('en-IN')}</span>
+                  <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.base.toLocaleString('en-IN')}</PriceText></span>
                 </div>
                 {selectedTransition.thickness > 0 && (
                   <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
                     <span>Transition</span>
-                    <span className="font-semibold text-primary">₹{priceBreakdown.trans.toLocaleString('en-IN')}</span>
+                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.trans.toLocaleString('en-IN')}</PriceText></span>
                   </div>
                 )}
                 {selectedTop.thickness > 0 && (
                   <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
                     <span>Comfort Topper</span>
-                    <span className="font-semibold text-primary">₹{priceBreakdown.top.toLocaleString('en-IN')}</span>
+                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.top.toLocaleString('en-IN')}</PriceText></span>
                   </div>
                 )}
                 <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
                   <span>Cover</span>
-                  <span className="font-semibold text-primary">₹{priceBreakdown.fabric.toLocaleString('en-IN')}</span>
+                  <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.fabric.toLocaleString('en-IN')}</PriceText></span>
                 </div>
                 {includeAccessories && (
                   <div className="flex items-center justify-between text-xs text-neutral-dark/70 py-1">
 +                   <span className="flex items-center gap-1"><Gift className="w-3 h-3" /> Accessories</span>
-                    <span className="font-semibold text-primary">₹{priceBreakdown.acc.toLocaleString('en-IN')}</span>
+                    <span className="font-semibold text-primary"><PriceText>₹{priceBreakdown.acc.toLocaleString('en-IN')}</PriceText></span>
                   </div>
                 )}
               </div>
@@ -348,7 +349,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                   <div>
                     <span className="text-[10px] font-semibold text-neutral-dark/60 uppercase tracking-wider">Total</span>
                     <div className="text-3xl font-bold text-primary tracking-tight mt-0.5">
-                      ₹{priceBreakdown.total.toLocaleString('en-IN')}
+                      <PriceText>₹{priceBreakdown.total.toLocaleString('en-IN')}</PriceText>
                     </div>
                   </div>
                   <div className="text-right">
@@ -625,7 +626,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                       <span className={`shrink-0 text-xs font-bold px-3 py-1.5 rounded-lg border ${
                                         isActive ? 'bg-accent/10 border-accent/20 text-accent' : 'bg-gray-50 border-gray-100 text-primary'
                                       }`}>
-                                        {top.priceFactor[size] === 0 ? 'Included' : `+ ₹${top.priceFactor[size].toLocaleString('en-IN')}`}
+                                        {top.priceFactor[size] === 0 ? 'Included' : <PriceText>{`+ ₹${top.priceFactor[size].toLocaleString('en-IN')}`}</PriceText>}
                                       </span>
                                     </div>
                                     {isActive && (
@@ -675,7 +676,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                     <div className={`inline-block text-xs font-bold px-3 py-1.5 rounded-lg border ${
                                       isActive ? 'bg-accent/10 border-accent/20 text-accent' : 'bg-gray-50 border-gray-100 text-primary'
                                     }`}>
-                                      + ₹{fabric.price[size].toLocaleString('en-IN')}
+                                      <PriceText>+ ₹{fabric.price[size].toLocaleString('en-IN')}</PriceText>
                                     </div>
                                     {isActive && (
                                       <div className="absolute top-3 right-3">
@@ -722,7 +723,7 @@ export default function MattressBuilder({ onAddToCart, onNavigate }: MattressBui
                                     ? 'bg-accent/10 border-accent/20 text-accent'
                                     : 'bg-gray-50 border-gray-100 text-primary'
                                 }`}>
-                                  + ₹{accessoryPrice[size].toLocaleString('en-IN')}
+                                  <PriceText>+ ₹{accessoryPrice[size].toLocaleString('en-IN')}</PriceText>
                                 </span>
                               </div>
                             </motion.button>

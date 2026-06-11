@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import { Check, Shield, Award, HelpCircle, MessageSquare, ArrowLeft, Heart, Star, Sparkles, BookOpen, VolumeX, Mail, ShoppingCart } from 'lucide-react';
 import { Product, MattressSize, CartItem } from '../../types';
 import ProductCarousel from './ProductCarousel';
@@ -338,8 +339,8 @@ export default function ProductDetail({ product, onAddToCartDirect, onNavigateBa
               </p>
 
               <div className="flex items-baseline gap-3 mb-1">
-                <span className="text-4xl font-bold text-gray-900 tracking-tight">₹{activePrice.toLocaleString('en-IN')}</span>
-                <span className="text-lg text-gray-400 line-through">₹{Math.round(activePrice * 1.4).toLocaleString('en-IN')}</span>
+                <span className="text-4xl font-bold text-gray-900 tracking-tight"><PriceText>₹{activePrice.toLocaleString('en-IN')}</PriceText></span>
+                <span className="text-lg text-gray-400 line-through"><PriceText>₹{Math.round(activePrice * 1.4).toLocaleString('en-IN')}</PriceText></span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">

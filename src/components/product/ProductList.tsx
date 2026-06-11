@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import PriceText from '../ui/PriceText';
 import { Search, SlidersHorizontal, Check, Shield, Star, RefreshCw, MessageSquare, Info, ChevronRight, Sparkles, AlertCircle, ShoppingCart } from 'lucide-react';
 import { Product, MattressSize, Tier } from '../../types';
 import { PRODUCTS } from '../../data/products';
@@ -396,14 +397,14 @@ export default function ProductList({
                           <span className="text-[9px] font-accent text-neutral-dark/50 tracking-widest uppercase mb-1">Starting From</span>
                           <div className="flex items-baseline gap-2">
                             <span className="text-2xl font-bold font-heading text-primary">
-                              ₹{price.toLocaleString('en-IN')}
+                              <PriceText>₹{price.toLocaleString('en-IN')}</PriceText>
                             </span>
                             <span className="text-sm font-body text-neutral-dark/40">
                               Single
                             </span>
                           </div>
                           <span className="text-[10px] text-neutral-dark/50 font-mono mt-0.5">
-                            Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')} (King)
+                            <PriceText>Up to ₹{getPriceRange(p).max.toLocaleString('en-IN')} (King)</PriceText>
                           </span>
                         </div>
                         <div className="text-right text-[9px] text-neutral-dark/40 font-mono max-w-[110px] leading-tight">
